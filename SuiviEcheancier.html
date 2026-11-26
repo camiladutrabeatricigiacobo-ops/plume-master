@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Suivi de compétences — Dép. en infographie</title>
+<style id="mainStyles">
+  :root {
+    /* BASE MODE FONCÉ */
+    --bg-main: #0b0f19;
+    --bg-grid-line: rgba(255, 255, 255, 0.02);
+    --bg-panel: #111827;
+    --bg-topbar: #0f1523;
+    --bg-card: #161e31;
+    --bg-card-disabled: #0e1320;
+    --bg-subcard: #0f1523;
+    --border-subtle: #1f2937;
+    --border-highlight: #374151;
+    --accent-indigo: #6366f1;
+    --accent-emerald: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-rose: #f43f5e;
+    --accent-sky: #0ea5e9;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --pill-indigo-text: #a5b4fc;
+    --pill-emerald-text: #34d399;
+    --pill-amber-text: #fbbf24;
+    --pill-rose-text: #fb7185;
+    --pill-sky-text: #38bdf8;
+    --pill-purple-text: #c084fc;
+    --shadow-panel: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --dash-card-bg: #161e31;
+    --dash-card-border: #263147;
+    --dash-ring-track: rgba(255, 255, 255, 0.09);
+
+    /* PALETTE 1 PAR DÉFAUT : ROSE & ORANGE */
+    --brand-primary: #f43f5e;
+    --brand-secondary: #f97316;
+    --brand-gradient: linear-gradient(135deg, #f43f5e 0%, #fb7185 48%, #f97316 115%);
+    --brand-bar-gradient: linear-gradient(90deg, #f43f5e, #fb923c);
+    --brand-bar-alt: linear-gradient(90deg, #f97316, #f43f5e);
+    --brand-shadow: rgba(244, 63, 94, 0.34);
+    --brand-soft-bg: rgba(244, 63, 94, 0.12);
+    --brand-soft-border: rgba(244, 63, 94, 0.42);
+    --brand-text-accent: #fb7185;
+    --ring-done-color: #f43f5e;
+    --ring-rem-color: #fb923c;
+  }
+
+  /* PALETTE 2 : VERT & MAUVE */
+  body.palette-green-purple {
+    --brand-primary: #10b981;
+    --brand-secondary: #8b5cf6;
+    --brand-gradient: linear-gradient(135deg, #059669 0%, #10b981 45%, #7c3aed 115%);
+    --brand-bar-gradient: linear-gradient(90deg, #10b981, #8b5cf6);
+    --brand-bar-alt: linear-gradient(90deg, #8b5cf6, #10b981);
+    --brand-shadow: rgba(124, 58, 237, 0.32);
+    --brand-soft-bg: rgba(16, 185, 129, 0.12);
+    --brand-soft-border: rgba(139, 92, 246, 0.45);
+    --brand-text-accent: #a78bfa;
+    --ring-done-color: #10b981;
+    --ring-rem-color: #8b5cf6;
+  }
+
+  /* BASE MODE CLAIR */
+  body.theme-light {
+    --bg-main: #eef0f4;
+    --bg-grid-line: rgba(15, 23, 42, 0.03);
+    --bg-panel: #f7f7f9;
+    --bg-topbar: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-disabled: #e2e8f0;
+    --bg-subcard: #f8fafc;
+    --border-subtle: #e2e8f0;
+    --border-highlight: #cbd5e1;
+    --accent-indigo: #4f46e5;
+    --accent-emerald: #059669;
+    --accent-amber: #d97706;
+    --accent-rose: #e11d48;
+    --accent-sky: #0284c7;
+    --text-primary: #111827;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --pill-indigo-text: #4338ca;
+    --pill-emerald-text: #047857;
+    --pill-amber-text: #b45309;
+    --pill-rose-text: #be123c;
+    --pill-sky-text: #0369a1;
+    --pill-purple-text: #7e22ce;
+    --shadow-panel: 0 14px 36px rgba(15, 23, 42, 0.08);
+    --dash-card-bg: #ffffff;
+    --dash-card-border: #e5e7eb;
+    --dash-ring-track: #eef0f4;
+
+    --brand-primary: #e11d48;
+    --brand-secondary: #ea580c;
+    --brand-gradient: linear-gradient(135deg, #e11d48 0%, #f43f5e 48%, #ea580c 115%);
+    --brand-bar-gradient: linear-gradient(90deg, #e11d48, #f97316);
+    --brand-bar-alt: linear-gradient(90deg, #ea580c, #e11d48);
+    --brand-shadow: rgba(225, 29, 72, 0.26);
+    --brand-soft-bg: rgba(225, 29, 72, 0.08);
+    --brand-soft-border: rgba(225, 29, 72, 0.38);
+    --brand-text-accent: #be123c;
+    --ring-done-color: #e11d48;
+    --ring-rem-color: #f97316;
+  }
+
+  body.theme-light.palette-green-purple {
+    --brand-primary: #059669;
+    --brand-secondary: #7c3aed;
+    --brand-gradient: linear-gradient(135deg, #047857 0%, #059669 44%, #6d28d9 115%);
+    --brand-bar-gradient: linear-gradient(90deg, #059669, #7c3aed);
+    --brand-bar-alt: linear-gradient(90deg, #7c3aed, #059669);
+    --brand-shadow: rgba(109, 40, 217, 0.24);
+    --brand-soft-bg: rgba(5, 150, 105, 0.09);
+    --brand-soft-border: rgba(124, 58, 237, 0.4);
+    --brand-text-accent: #6d28d9;
+    --ring-done-color: #059669;
+    --ring-rem-color: #7c3aed;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    background-image: 
+      linear-gradient(to right, var(--bg-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--bg-grid-line) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .app-container {
+    max-width: 1180px;
+    margin: auto;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    box-shadow: var(--shadow-panel);
+    overflow: hidden;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: var(--bg-topbar);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(244, 146, 0, 0.32);
+  }
+  .brand-icon svg { width: 100%; height: 100%; display: block; }
+  .brand-text-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .brand-title { font-weight: 800; font-size: 17px; letter-spacing: -0.02em; color: var(--text-primary); }
+  .badge-pro {
+    background: var(--brand-soft-bg); color: var(--brand-text-accent);
+    border: 1px solid var(--brand-soft-border);
+    font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px;
+  }
+
+  .controls-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .input-group {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg-card); border: 1px solid var(--border-highlight);
+    padding: 6px 12px; border-radius: 999px;
+  }
+  .input-group.student-box { border-color: var(--brand-soft-border); background: var(--brand-soft-bg); }
+  .input-group label { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+
+  select, input[type="date"] {
+    background: transparent; border: none; color: var(--text-primary);
+    font-size: 13px; font-family: inherit; outline: none; cursor: pointer;
+  }
+  select:disabled { cursor: default; opacity: 0.9; }
+  select.student-select-large { font-size: 14px; font-weight: 700; color: var(--text-primary); min-width: 175px; }
+  select option { background: var(--bg-panel); color: var(--text-primary); font-size: 14px; }
+  body:not(.theme-light) input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
+
+  .mini-btn {
+    background: #181828; border: 1px solid rgba(255, 255, 255, 0.15); color: #fff;
+    border-radius: 999px; padding: 4px 11px; font-size: 11.5px; font-weight: 700;
+    cursor: pointer; transition: 0.15s;
+  }
+  .mini-btn:hover { background: var(--brand-primary); border-color: var(--brand-primary); color: #fff; }
+  .mini-btn.danger { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.35); color: var(--pill-rose-text); padding: 4px 8px; }
+  .mini-btn.danger:hover { background: #dc2626; color: #fff; }
+
+  .icon-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg-card); border: 1px solid var(--border-highlight);
+    color: var(--text-primary); border-radius: 999px; padding: 7px 14px;
+    font-size: 12.5px; font-weight: 600; cursor: pointer; transition: 0.15s;
+  }
+  .icon-nav-btn:hover { border-color: var(--brand-primary); color: var(--brand-text-accent); }
+
+  .preview-banner-alert {
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.18), rgba(99, 102, 241, 0.12));
+    border-bottom: 1px solid rgba(14, 165, 233, 0.4);
+    padding: 10px 24px; font-size: 12.5px; font-weight: 600; color: var(--pill-sky-text);
+    display: none; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .preview-banner-alert.visible { display: flex; }
+
+  .content-body { padding: 22px 24px; }
+
+  /* EN-TÊTE DASHBOARD ANALYTICS */
+  .dashboard-header-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 1020px) { .dashboard-header-grid { grid-template-columns: 1fr; } }
+
+  /* BANDEAU GLOBAL FORMATION (AVANCE / RETARD EN JOURS ET HEURES) */
+  .formation-global-banner {
+    background: var(--dash-card-bg);
+    border: 1px solid var(--dash-card-border);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  }
+  .formation-global-banner.ahead {
+    border-left: 4px solid var(--accent-emerald);
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.10) 0%, var(--dash-card-bg) 55%);
+  }
+  .formation-global-banner.behind {
+    border-left: 4px solid var(--accent-rose);
+    background: linear-gradient(90deg, rgba(244, 63, 94, 0.11) 0%, var(--dash-card-bg) 55%);
+  }
+  .formation-global-banner.ontime {
+    border-left: 4px solid var(--accent-sky);
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.09) 0%, var(--dash-card-bg) 55%);
+  }
+  .fgb-left { display: flex; align-items: center; gap: 12px; }
+  .fgb-icon {
+    width: 40px; height: 40px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; flex-shrink: 0;
+    background: rgba(148, 163, 184, 0.12);
+  }
+  .formation-global-banner.ahead .fgb-icon { background: rgba(16, 185, 129, 0.16); }
+  .formation-global-banner.behind .fgb-icon { background: rgba(244, 63, 94, 0.16); }
+  .formation-global-banner.ontime .fgb-icon { background: rgba(14, 165, 233, 0.16); }
+  .fgb-title {
+    font-size: 11.5px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-secondary); display: block;
+  }
+  .fgb-main { font-size: 16.5px; font-weight: 800; color: var(--text-primary); margin-top: 2px; display: block; }
+  .formation-global-banner.ahead .fgb-main { color: var(--pill-emerald-text); }
+  .formation-global-banner.behind .fgb-main { color: var(--pill-rose-text); }
+  .formation-global-banner.ontime .fgb-main { color: var(--pill-sky-text); }
+  .fgb-right { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .fgb-stat-box {
+    background: var(--bg-panel); border: 1px solid var(--border-subtle);
+    border-radius: 10px; padding: 6px 12px; display: flex; flex-direction: column;
+  }
+  .fgb-stat-box span { font-size: 10.5px; color: var(--text-muted); font-weight: 700; }
+  .fgb-stat-box strong { font-size: 13px; color: var(--text-primary); font-weight: 800; }
+
+  /* CARTE 1 : HERO GRADIENT */
+  .dash-hero-card {
+    background: var(--brand-gradient); border-radius: 20px; padding: 20px 22px; color: #ffffff;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden; box-shadow: 0 14px 30px var(--brand-shadow); min-height: 255px;
+  }
+  .dash-hero-card::after {
+    content: ""; position: absolute; right: -30px; top: -30px; width: 150px; height: 150px;
+    border-radius: 50%; background: rgba(255, 255, 255, 0.13); pointer-events: none;
+  }
+  .dash-hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; z-index: 1; }
+  .dash-hero-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.92; display: block; margin-bottom: 3px; }
+  .dash-hero-student { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 0; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.14); }
+  .dash-group-pill {
+    background: rgba(255, 255, 255, 0.22); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.38); color: #fff;
+    font-size: 12px; font-weight: 800; padding: 4px 11px; border-radius: 999px; white-space: nowrap;
+  }
+
+  .dash-formation-dates {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    background: rgba(15, 23, 42, 0.26); border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 12px; padding: 9px 12px; margin: 12px 0 10px 0; z-index: 1;
+  }
+  .dash-fdate-box { display: flex; flex-direction: column; gap: 3px; }
+  .dash-fdate-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9; }
+  .dash-fdate-inputs { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .dash-fdate-inputs input[type="date"] {
+    background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 6px; padding: 2px 6px; color: #ffffff; font-size: 12px; font-weight: 700;
+  }
+  .dash-fdate-inputs input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+  .dash-fdate-val { font-size: 13.5px; font-weight: 800; color: #ffffff; line-height: 1.3; }
+  .dash-fdate-sub { font-size: 10.5px; color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+
+  .hero-variance-pill {
+    display: inline-block; margin-top: 3px; padding: 2px 8px; border-radius: 999px;
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.01em; width: fit-content;
+  }
+  .hero-variance-pill.ahead { background: rgba(16, 185, 129, 0.35); border: 1px solid rgba(255, 255, 255, 0.55); color: #ffffff; }
+  .hero-variance-pill.behind { background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.45); color: #fde047; }
+  .hero-variance-pill.ontime { background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35); color: #ffffff; }
+
+  .dash-hero-comp-box { margin: 2px 0 8px 0; z-index: 1; }
+  .dash-comp-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(15, 23, 42, 0.28); padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  .dash-comp-title { font-size: 15.5px; font-weight: 800; line-height: 1.25; display: block; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12); }
+  .dash-hero-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.28); z-index: 1; }
+  .dash-hero-metric span { display: block; font-size: 10.5px; opacity: 0.88; font-weight: 600; }
+  .dash-hero-metric strong { font-size: 14px; font-weight: 800; letter-spacing: -0.01em; }
+
+  /* CARTE 2 : GRAPHIQUE ANNEAU */
+  .dash-ring-card {
+    background: var(--dash-card-bg); border: 1px solid var(--dash-card-border);
+    border-radius: 20px; padding: 20px; display: flex; flex-direction: column;
+    justify-content: space-between; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+  .dash-card-header { display: flex; justify-content: space-between; align-items: center; }
+  .dash-card-title { font-size: 13px; font-weight: 700; color: var(--text-secondary); }
+  .dash-dots { color: var(--text-muted); font-weight: 800; letter-spacing: 2px; font-size: 14px; }
+  .dash-big-kpi { font-size: 32px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.03em; margin: 4px 0 10px 0; }
+  .dash-ring-body { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .dash-ring-legend { display: flex; flex-direction: column; gap: 12px; }
+  .dash-legend-item { display: flex; flex-direction: column; gap: 2px; }
+  .dash-legend-label { font-size: 11.5px; color: var(--text-secondary); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .dash-dot-done { width: 9px; height: 9px; border-radius: 50%; background: var(--ring-done-color); display: inline-block; }
+  .dash-dot-rem { width: 9px; height: 9px; border-radius: 50%; background: var(--ring-rem-color); display: inline-block; }
+  .dash-legend-val { font-size: 15px; font-weight: 800; color: var(--text-primary); padding-left: 15px; }
+  .dash-donut-wrap { position: relative; width: 112px; height: 112px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .dash-donut-svg { width: 112px; height: 112px; transform: rotate(-90deg); }
+  .dash-donut-center { position: absolute; text-align: center; pointer-events: none; }
+  .dash-donut-center span { font-size: 12px; font-weight: 800; color: var(--text-primary); display: block; }
+  .dash-donut-center small { font-size: 9.5px; color: var(--text-muted); font-weight: 600; }
+
+  /* COLONNE 3 : 3 CARTES COMPACTES */
+  .dash-right-stack { display: flex; flex-direction: column; gap: 11px; justify-content: space-between; }
+  .dash-mini-card {
+    background: var(--dash-card-bg); border: 1px solid var(--dash-card-border);
+    border-radius: 16px; padding: 12px 16px; display: flex; flex-direction: column;
+    gap: 7px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  }
+  .dash-mini-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .dash-mini-left { display: flex; align-items: center; gap: 10px; }
+  .dash-mini-number { font-size: 21px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; white-space: nowrap; }
+  .dash-mini-label-group { display: flex; flex-direction: column; }
+  .dash-mini-title { font-size: 12.5px; font-weight: 700; color: var(--text-primary); }
+  .dash-mini-sub { font-size: 11px; color: var(--text-secondary); }
+  .dash-bar-track { width: 100%; height: 7px; background: var(--dash-ring-track); border-radius: 999px; overflow: hidden; }
+  .dash-bar-fill-primary { height: 100%; background: var(--brand-bar-gradient); border-radius: 999px; transition: width 0.3s ease; }
+  .dash-bar-fill-secondary { height: 100%; background: var(--brand-bar-alt); border-radius: 999px; transition: width 0.3s ease; }
+
+  .dash-spark-bars { display: flex; align-items: flex-end; gap: 3px; height: 28px; padding-top: 4px; }
+  .dash-spark-col { flex: 1; border-radius: 3px; background: var(--dash-ring-track); min-height: 6px; transition: height 0.25s ease, background 0.25s ease; }
+  .dash-spark-col.done { background: var(--brand-primary); }
+  .dash-spark-col.partial { background: var(--brand-secondary); }
+  .dash-spark-col.overdue { background: #e11d48; }
+  .dash-spark-col.today { background: #0ea5e9; }
+
+  .status-pill-mini { font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .status-pill-mini.on-track { background: var(--brand-soft-bg); color: var(--brand-text-accent); border: 1px solid var(--brand-soft-border); }
+  .status-pill-mini.ahead { background: rgba(16, 185, 129, 0.16); color: var(--pill-emerald-text); }
+  .status-pill-mini.behind { background: rgba(244, 63, 94, 0.16); color: var(--pill-rose-text); }
+
+  /* SÉLECTEUR DE COMPÉTENCES */
+  .section-label-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 8px; }
+  .section-label-row .section-label { margin-bottom: 0; }
+
+  .comp-strip {
+    display: flex; justify-content: space-between; align-items: center; gap: 4px;
+    padding: 10px 12px; background: var(--bg-card); border: 1px solid var(--border-subtle);
+    border-radius: 14px; margin-bottom: 16px; overflow-x: auto;
+  }
+  .comp-btn {
+    width: 34px; height: 34px; min-width: 34px; border-radius: 50%;
+    border: 1.5px solid var(--border-highlight); background: var(--bg-subcard);
+    color: var(--text-secondary); font-size: 12px; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; padding: 0;
+  }
+  .comp-btn.combined-btn { width: auto; min-width: 44px; padding: 0 9px; border-radius: 999px; }
+  .comp-btn:hover:not(:disabled) { border-color: var(--brand-primary); color: var(--text-primary); transform: translateY(-1px); }
+  .comp-btn:disabled { cursor: default; }
+  .comp-btn.active { background: var(--brand-gradient); border-color: var(--brand-primary); color: #fff; box-shadow: 0 4px 12px var(--brand-shadow); }
+  .comp-btn.done { background: var(--brand-soft-bg); border-color: var(--brand-secondary); color: var(--brand-text-accent); }
+  .comp-btn.done.active { background: var(--brand-gradient); color: #fff; }
+
+  .warning-msg {
+    background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35);
+    color: var(--pill-amber-text); font-size: 12px; padding: 8px 12px; border-radius: 10px;
+    margin-bottom: 12px; display: none;
+  }
+
+  /* GRILLE HORAIRE */
+  .schedule-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .cours-box {
+    background: var(--bg-card); border: 1px solid var(--border-highlight); border-radius: 12px;
+    padding: 9px 8px; min-height: 112px; display: flex; flex-direction: column;
+    justify-content: space-between; transition: border-color 0.2s, transform 0.15s, opacity 0.25s, background-color 0.25s;
+  }
+  .cours-box:hover:not(.past-box):not(.skipped-box) { border-color: var(--brand-primary); }
+  .cours-box.first-box:not(.past-box) { border: 1.5px solid var(--brand-primary); background: linear-gradient(180deg, var(--brand-soft-bg) 0%, var(--bg-card) 100%); }
+  .cours-box.custom-anchor-box { border: 1.5px dashed var(--accent-amber) !important; }
+  .cours-box.today-box { border: 1.5px solid var(--brand-secondary); box-shadow: 0 0 12px var(--brand-shadow); }
+  .cours-box.past-box { background: var(--bg-card-disabled); border: 1px solid var(--border-subtle); opacity: 0.42; }
+  .cours-box.past-box .cours-date-main { color: var(--text-muted); }
+  .cours-box.skipped-box { background: rgba(16, 185, 129, 0.05); border: 1px dashed rgba(16, 185, 129, 0.35); opacity: 0.68; }
+  .cours-box.skipped-box .cours-date-main { font-size: 12px; color: var(--pill-emerald-text); text-decoration: line-through; opacity: 0.75; }
+
+  .cours-box-header { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+  .cours-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .slot-actions { display: inline-flex; align-items: center; gap: 3px; }
+  .slot-edit-btn {
+    background: rgba(148, 163, 184, 0.12); border: 1px solid var(--border-highlight);
+    color: var(--text-secondary); border-radius: 5px; font-size: 10px; font-weight: 700;
+    padding: 1px 5px; cursor: pointer; line-height: 1.25; transition: 0.15s;
+  }
+  .slot-edit-btn:hover { background: var(--brand-primary); border-color: var(--brand-primary); color: #fff; }
+  .slot-edit-btn.reset { background: rgba(245, 158, 11, 0.18); border-color: rgba(245, 158, 11, 0.45); color: var(--pill-amber-text); }
+  .slot-edit-btn.reset:hover { background: var(--accent-amber); color: #fff; }
+
+  .cours-date-block { text-align: center; margin: 4px 0; }
+  .cours-date-main { display: block; font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+  .cours-period-sub { display: inline-block; font-size: 10.5px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 1px; }
+
+  .tags-stack { display: flex; flex-direction: column; gap: 3px; margin-top: 3px; }
+  .eval-tag { font-size: 10.5px; font-weight: 700; text-align: center; border-radius: 5px; padding: 2px 4px; letter-spacing: 0.02em; }
+  .eval-pretest { background: rgba(56, 189, 248, 0.14); color: var(--pill-sky-text); border: 1px solid rgba(56, 189, 248, 0.3); }
+  .eval-examen { background: rgba(244, 63, 94, 0.15); color: var(--pill-rose-text); border: 1px solid rgba(244, 63, 94, 0.3); }
+  .eval-recup { background: rgba(245, 158, 11, 0.15); color: var(--pill-amber-text); border: 1px solid rgba(245, 158, 11, 0.3); }
+  .eval-reprise { background: rgba(168, 85, 247, 0.15); color: var(--pill-purple-text); border: 1px solid rgba(168, 85, 247, 0.3); }
+  .eval-cmd { background: rgba(99, 102, 241, 0.14); color: var(--pill-indigo-text); border: 1px solid rgba(99, 102, 241, 0.3); }
+  .eval-custom { background: rgba(245, 158, 11, 0.18); color: var(--pill-amber-text); border: 1px solid rgba(245, 158, 11, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .eval-skipped { background: rgba(16, 185, 129, 0.14); color: var(--pill-emerald-text); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 9.5px; }
+
+  .exam-pass-btn {
+    width: 100%; border-radius: 5px; padding: 3px 4px; font-size: 10px; font-weight: 800;
+    cursor: pointer; border: 1px dashed rgba(16, 185, 129, 0.55); background: rgba(16, 185, 129, 0.1);
+    color: var(--pill-emerald-text); transition: 0.15s; text-align: center;
+  }
+  .exam-pass-btn:hover { background: var(--accent-emerald); color: #ffffff; border-style: solid; }
+  .exam-pass-btn.passed { background: var(--accent-emerald); border: 1px solid var(--accent-emerald); color: #ffffff; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35); }
+  .exam-pass-badge-readonly { font-size: 10px; font-weight: 800; text-align: center; border-radius: 5px; padding: 2px 4px; background: rgba(16, 185, 129, 0.2); color: var(--pill-emerald-text); border: 1px solid rgba(16, 185, 129, 0.45); }
+  .milestone { font-size: 10.5px; color: var(--pill-emerald-text); background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 5px; padding: 2px 0; font-weight: 700; text-align: center; }
+
+  .inline-edit-panel { display: flex; flex-direction: column; gap: 4px; margin: 4px 0; background: var(--bg-panel); padding: 6px; border-radius: 7px; border: 1px solid var(--brand-primary); }
+  .inline-edit-panel input[type="date"], .inline-edit-panel input[type="text"], .inline-edit-panel select {
+    font-size: 11px; padding: 3px 5px; width: 100%; color: var(--text-primary); background: var(--bg-card);
+    border: 1px solid var(--border-highlight); border-radius: 4px; font-family: inherit; outline: none;
+  }
+  .inline-edit-btns { display: flex; gap: 4px; margin-top: 2px; }
+  .inline-edit-btns button { flex: 1; border: none; border-radius: 4px; font-size: 10.5px; font-weight: 700; padding: 3px 4px; cursor: pointer; }
+  .inline-edit-btns .btn-ok { background: var(--accent-emerald); color: #fff; }
+  .inline-edit-btns .btn-cancel { background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border-highlight); }
+
+  /* JOURNAL DE BORD */
+  .logbook-section { margin-top: 26px; background: var(--bg-card); border: 1px solid var(--border-highlight); border-radius: 16px; padding: 18px 20px; }
+  .logbook-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 16px; }
+  .logbook-title { font-size: 15px; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+  .logbook-stats { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+  .lessons-toggle-switch {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--bg-panel);
+    border: 1px solid var(--border-highlight); border-radius: 999px; padding: 4px 11px 4px 7px;
+    cursor: pointer; font-size: 11.5px; font-weight: 700; color: var(--text-primary); transition: 0.15s; user-select: none;
+  }
+  .lessons-toggle-switch:hover { border-color: var(--brand-primary); }
+  .toggle-track { width: 32px; height: 18px; border-radius: 999px; background: rgba(148, 163, 184, 0.32); position: relative; transition: background 0.2s ease; flex-shrink: 0; }
+  .lessons-toggle-switch.is-open .toggle-track { background: var(--brand-primary); }
+  .toggle-thumb { width: 14px; height: 14px; border-radius: 50%; background: #ffffff; position: absolute; top: 2px; left: 2px; transition: transform 0.2s ease; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35); }
+  .lessons-toggle-switch.is-open .toggle-thumb { transform: translateX(14px); }
+
+  .cours-mini-toggle {
+    display: inline-flex; align-items: center; gap: 5px; background: var(--bg-card);
+    border: 1px solid var(--border-highlight); border-radius: 999px; padding: 2px 8px 2px 5px;
+    cursor: pointer; font-size: 10.5px; font-weight: 700; color: var(--text-secondary); transition: 0.15s;
+  }
+  .cours-mini-toggle:hover { border-color: var(--brand-primary); color: var(--text-primary); }
+  .cours-mini-toggle .toggle-track { width: 24px; height: 14px; }
+  .cours-mini-toggle .toggle-thumb { width: 10px; height: 10px; }
+  .cours-mini-toggle.is-open .toggle-thumb { transform: translateX(10px); }
+  .cours-mini-toggle.is-open .toggle-track { background: var(--brand-primary); }
+
+  .stat-pill { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+  .stat-student { background: var(--brand-soft-bg); color: var(--brand-text-accent); border: 1px solid var(--brand-soft-border); }
+  .stat-prof { background: rgba(245, 158, 11, 0.15); color: var(--pill-amber-text); border: 1px solid rgba(245, 158, 11, 0.35); }
+  .filter-toggle { background: var(--bg-panel); border: 1px solid var(--border-highlight); color: var(--text-secondary); padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .filter-toggle.active { background: rgba(245, 158, 11, 0.2); border-color: var(--accent-amber); color: var(--pill-amber-text); }
+
+  .logbook-legend { display: flex; gap: 16px; font-size: 11.5px; color: var(--text-secondary); margin-bottom: 14px; flex-wrap: wrap; }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
+
+  .cours-block-card { background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+  .cours-block-card:last-child { margin-bottom: 0; }
+  .cours-block-card.cours-complete { border-color: var(--brand-primary); }
+  .cours-block-card.cours-overdue { border-color: rgba(244, 63, 94, 0.45); }
+  .cours-block-header { background: rgba(148, 163, 184, 0.06); padding: 9px 14px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; cursor: pointer; }
+  .cours-block-header.is-collapsed { border-bottom: none; }
+  .cours-header-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cours-block-name { font-weight: 800; font-size: 13.5px; color: var(--brand-text-accent); }
+  .cours-status-chip { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+  .chip-done { background: var(--brand-soft-bg); color: var(--brand-text-accent); border: 1px solid var(--brand-soft-border); }
+  .chip-overdue { background: rgba(244, 63, 94, 0.16); color: var(--pill-rose-text); border: 1px solid rgba(244, 63, 94, 0.35); }
+  .chip-today { background: rgba(14, 165, 233, 0.18); color: var(--pill-sky-text); border: 1px solid rgba(14, 165, 233, 0.4); }
+  .cours-header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cours-progress-wrap { display: flex; align-items: center; gap: 8px; }
+  .cours-progress-bar { width: 72px; height: 7px; background: rgba(148, 163, 184, 0.2); border-radius: 999px; overflow: hidden; }
+  .cours-progress-fill { height: 100%; background: var(--brand-secondary); border-radius: 999px; transition: width 0.2s ease; }
+  .cours-progress-fill.full { background: var(--brand-primary); }
+  .cours-progress-text { font-size: 11.5px; font-weight: 700; color: var(--text-secondary); min-width: 78px; text-align: right; }
+  .cours-progress-text.full { color: var(--brand-text-accent); }
+  .cours-block-date { font-size: 12px; color: var(--text-secondary); font-weight: 600; background: rgba(148, 163, 184, 0.1); padding: 3px 8px; border-radius: 6px; }
+  .part-banner { background: var(--brand-soft-bg); color: var(--brand-text-accent); font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 14px; border-bottom: 1px solid var(--border-subtle); }
+  .lesson-group { padding: 8px 14px; border-bottom: 1px solid var(--border-subtle); }
+  .lesson-group:last-child { border-bottom: none; }
+  .lesson-title { font-size: 12.5px; font-weight: 700; color: var(--pill-sky-text); margin-bottom: 6px; }
+  .task-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 8px; border-radius: 7px; transition: background 0.12s; font-size: 12.5px; }
+  .task-row:hover { background: rgba(148, 163, 184, 0.08); }
+  .task-row.student-done .task-text { color: var(--text-secondary); text-decoration: line-through; text-decoration-color: rgba(148, 163, 184, 0.5); }
+  .task-left { display: flex; align-items: center; gap: 9px; flex: 1; }
+  .task-checkbox-student { accent-color: var(--brand-primary); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+  .readonly-mark { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; font-size: 14px; font-weight: 900; color: var(--brand-primary); flex-shrink: 0; }
+  .readonly-mark.empty { color: transparent; }
+  .task-text { color: var(--text-primary); line-height: 1.35; }
+  .task-badges { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .badge-auto { font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 5px; background: rgba(16, 185, 129, 0.12); color: var(--pill-emerald-text); border: 1px solid rgba(16, 185, 129, 0.28); }
+  .badge-init-req { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 5px; background: rgba(245, 158, 11, 0.14); color: var(--pill-amber-text); border: 1px solid rgba(245, 158, 11, 0.3); }
+  .badge-depot { font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 5px; background: rgba(244, 63, 94, 0.14); color: var(--pill-rose-text); border: 1px solid rgba(244, 63, 94, 0.3); }
+  .prof-check-wrap { display: flex; align-items: center; gap: 5px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 8px; border-radius: 999px; cursor: pointer; font-size: 11px; font-weight: 700; color: var(--pill-amber-text); }
+  .prof-check-wrap.validated { background: rgba(16, 185, 129, 0.18); border-color: var(--accent-emerald); color: var(--pill-emerald-text); }
+  .prof-check-wrap.locked { cursor: default; }
+  .prof-check-wrap input[type="checkbox"] { accent-color: var(--accent-amber); width: 15px; height: 15px; cursor: pointer; margin: 0; }
+  .prof-check-wrap.validated input[type="checkbox"] { accent-color: var(--accent-emerald); }
+
+  /* GUIDE DE SUIVI GLOBAL */
+  .checklist-section { margin-top: 24px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 16px 18px; }
+  .checklist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .progress-counter { background: var(--brand-soft-bg); color: var(--brand-text-accent); border: 1px solid var(--brand-soft-border); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .checklist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  @media (max-width: 860px) { .checklist-grid { grid-template-columns: 1fr; } .schedule-grid { grid-template-columns: repeat(3, 1fr); } }
+  .check-item { display: flex; align-items: center; gap: 9px; padding: 8px 11px; background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: 10px; cursor: pointer; transition: 0.15s; font-size: 12.5px; }
+  .check-item.readonly-item { cursor: default; }
+  .check-item:hover:not(.readonly-item) { border-color: var(--border-highlight); }
+  .check-item.active-comp-row { border-color: var(--brand-primary); box-shadow: 0 0 0 1px var(--brand-soft-border); }
+  .check-item.checked { background: var(--brand-soft-bg); border-color: var(--brand-soft-border); }
+  .check-item input[type="checkbox"] { accent-color: var(--brand-primary); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+  .check-num { font-weight: 800; color: var(--text-secondary); min-width: 28px; flex-shrink: 0; }
+  .check-item.checked .check-num { color: var(--brand-text-accent); }
+  .check-main-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+  .check-name { color: var(--text-primary); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .check-item.checked .check-name { color: var(--text-secondary); }
+  .check-dates-range { font-size: 11px; color: var(--text-muted); font-weight: 400; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .check-prof { font-size: 11px; color: var(--text-muted); flex-shrink: 0; text-align: right; }
+
+  .notes-section { margin-top: 20px; }
+  textarea { width: 100%; height: 72px; background: var(--bg-card); border: 1px solid var(--border-highlight); border-radius: 12px; padding: 10px 12px; color: var(--text-primary); font-family: inherit; font-size: 13px; resize: vertical; }
+  textarea:focus { outline: none; border-color: var(--brand-primary); }
+
+  /* BABILLARD DES NOTES DE PARCOURS */
+  .bulletin-board-section { margin-top: 20px; background: var(--bg-card); border: 1px solid var(--border-highlight); border-radius: 16px; padding: 16px 18px; }
+  .bulletin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+  .bulletin-summary-pill {
+    font-size: 11.5px; font-weight: 800; padding: 5px 12px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .bulletin-summary-pill.ahead { background: rgba(16, 185, 129, 0.16); color: var(--pill-emerald-text); border: 1px solid rgba(16, 185, 129, 0.35); }
+  .bulletin-summary-pill.behind { background: rgba(244, 63, 94, 0.16); color: var(--pill-rose-text); border: 1px solid rgba(244, 63, 94, 0.35); }
+  .bulletin-summary-pill.ontime { background: rgba(14, 165, 233, 0.14); color: var(--pill-sky-text); border: 1px solid rgba(14, 165, 233, 0.32); }
+
+  .bulletin-add-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .bulletin-add-row input[type="text"] {
+    flex: 1; min-width: 220px; background: var(--bg-panel); border: 1px solid var(--border-highlight);
+    border-radius: 999px; padding: 7px 14px; color: var(--text-primary); font-size: 12.5px; font-family: inherit; outline: none;
+  }
+  .bulletin-add-row input[type="text"]:focus { border-color: var(--brand-primary); }
+
+  .bulletin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (max-width: 860px) { .bulletin-grid { grid-template-columns: 1fr; } }
+  .bulletin-card {
+    background: var(--bg-panel); border: 1px solid var(--border-subtle); border-left: 3px solid var(--accent-amber);
+    border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 5px;
+  }
+  .bulletin-card.type-exam { border-left-color: var(--accent-emerald); }
+  .bulletin-card.type-general { border-left-color: var(--brand-primary); }
+  .bulletin-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .bulletin-badge { font-size: 11px; font-weight: 800; color: var(--pill-amber-text); }
+  .bulletin-card.type-exam .bulletin-badge { color: var(--pill-emerald-text); }
+  .bulletin-card.type-general .bulletin-badge { color: var(--brand-text-accent); }
+  .bulletin-impact-tag {
+    font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 5px;
+    background: rgba(148, 163, 184, 0.14); color: var(--text-primary);
+  }
+  .bulletin-impact-tag.gain { background: rgba(16, 185, 129, 0.16); color: var(--pill-emerald-text); }
+  .bulletin-impact-tag.loss { background: rgba(244, 63, 94, 0.16); color: var(--pill-rose-text); }
+  .bulletin-date-tag { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+  .bulletin-text { font-size: 12.5px; color: var(--text-primary); line-height: 1.4; }
+  .bulletin-del-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 0 4px; line-height: 1; }
+  .bulletin-del-btn:hover { color: var(--pill-rose-text); }
+  .bulletin-empty { font-size: 12.5px; color: var(--text-muted); font-style: italic; padding: 6px 0; }
+
+  .toolbar { display: flex; justify-content: flex-end; align-items: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-subtle); gap: 10px; flex-wrap: wrap; }
+  button.action { padding: 9px 18px; border: none; border-radius: 999px; cursor: pointer; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: 0.15s; }
+  button.action.primary { background: var(--brand-gradient); color: #fff; box-shadow: 0 4px 14px var(--brand-shadow); }
+  button.action.primary:hover { filter: brightness(1.06); }
+  button.action.emerald { background: var(--accent-emerald); color: #fff; }
+  button.action.emerald:hover { filter: brightness(1.08); }
+  button.action.secondary { background: var(--bg-card); border: 1px solid var(--border-highlight); color: var(--text-primary); }
+  button.action.secondary:hover { border-color: var(--text-secondary); }
+
+  /* MODALES */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.72); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
+  .modal-backdrop.open { display: flex; }
+  .modal-box { background: var(--bg-panel); border: 1px solid var(--border-highlight); border-radius: 18px; max-width: 640px; width: 100%; max-height: 88vh; overflow-y: auto; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55); padding: 22px 24px; }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 16px; }
+  .modal-title { font-size: 18px; font-weight: 800; color: var(--text-primary); margin: 0; }
+  .modal-close { background: var(--bg-card); border: 1px solid var(--border-highlight); color: var(--text-secondary); width: 30px; height: 30px; border-radius: 8px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-close:hover { color: var(--text-primary); border-color: var(--brand-primary); }
+  .theme-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .theme-card { background: var(--bg-card); border: 2px solid var(--border-highlight); border-radius: 12px; padding: 14px; cursor: pointer; text-align: left; transition: 0.15s; color: var(--text-primary); }
+  .theme-card:hover { border-color: var(--brand-primary); }
+  .theme-card.selected { border-color: var(--brand-primary); background: var(--brand-soft-bg); }
+  .theme-card-title { font-weight: 800; font-size: 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .theme-card-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.35; }
+  .swatch-pair { display: inline-flex; align-items: center; gap: 3px; }
+  .swatch-dot { width: 13px; height: 13px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); display: inline-block; }
+  .help-grid { display: flex; flex-direction: column; gap: 12px; }
+  .help-item { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px 14px; }
+  .help-item h4 { margin: 0 0 5px 0; font-size: 13.5px; color: var(--brand-text-accent); }
+  .help-item p { margin: 0; font-size: 12.5px; color: var(--text-secondary); line-height: 1.45; }
+
+  @media print {
+    body { background: #fff !important; color: #000 !important; padding: 0; }
+    .app-container { background: #fff !important; border: none; box-shadow: none; }
+    .top-bar { background: #fff !important; border-bottom: 2px solid #000; }
+    .brand-title, .cours-date-main, .check-name, .task-text, .logbook-title, select, .dash-big-kpi, .dash-mini-number, .bulletin-text, .fgb-main { color: #000 !important; }
+    .dash-hero-card { background: #f8fafc !important; color: #000 !important; border: 1.5px solid #000 !important; box-shadow: none !important; }
+    .dash-ring-card, .dash-mini-card, .cours-box, .check-item, .checklist-section, .logbook-section, .cours-block-card, .bulletin-board-section, .bulletin-card, .formation-global-banner { background: #fff !important; border: 1px solid #64748b !important; }
+    .cours-box.past-box { opacity: 0.25 !important; }
+    .toolbar, .teacher-only, .slot-actions, .inline-edit-panel, .comp-strip, .mini-btn, .filter-toggle, .icon-nav-btn, .modal-backdrop, .preview-banner-alert, .bulletin-add-row, .bulletin-del-btn, .lessons-toggle-switch, .cours-mini-toggle { display: none !important; }
+    textarea { background: #fff !important; border: 1px solid #94a3b8 !important; color: #000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="top-bar">
+    <div class="brand">
+      <div class="brand-icon" title="Département en infographie">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194.4 194.4">
+          <rect fill="#F49200" y="0" width="194.4" height="194.4" rx="46.8" ry="46.8"/>
+          <g fill="#fff">
+            <path d="M160.3,107.6v46.2h1.4c4.5,0,8.5-1.8,11.4-4.8,3-3,4.8-6.9,4.8-11.4v-30.2h-17.6Z"/>
+            <path d="M160.7,98h0c0,0,11,0,11,0,3,0,5.8-1.2,7.8-3.3,2-2,3.3-4.8,3.3-7.8s-1.2-5.8-3.3-7.8c-2-2-4.8-3.3-7.8-3.3s-5.8,1.2-7.9,3.3c-2,2-3.3,4.8-3.3,7.8v11s.2,0,.2,0Z"/>
+            <path d="M79.3,41h-1.4c-4.4,0-8.5,1.8-11.4,4.8-3,3-4.8,6.9-4.8,11.4v47.3h0v16.2c0,4.4-1.8,8.4-4.8,11.4s-6.9,4.8-11.5,4.8-8.5-1.8-11.4-4.8c-3-3-4.8-6.9-4.8-11.4s1.8-8.5,4.8-11.5,6.9-4.8,11.4-4.8h16.2v-17.6h-16.2c-18.6,0-33.8,15.1-33.8,33.7s15.1,33.7,33.7,33.8c18.6,0,33.8-15.2,33.8-33.8V40.9h0Z"/>
+            <path d="M89,153.4h1.4c4.5,0,8.5-1.8,11.4-4.8,3-3,4.8-6.9,4.8-11.4v-47.3h0v-16.2c0-4.4,1.8-8.4,4.8-11.4s6.9-4.8,11.5-4.8,8.5,1.8,11.4,4.8c3,3,4.8,6.9,4.8,11.4s-1.8,8.5-4.8,11.5-6.9,4.8-11.4,4.8h-16.2v17.6h16.2c18.6,0,33.7-15.1,33.8-33.7,0-18.6-15.1-33.7-33.7-33.8-18.6,0-33.8,15.2-33.8,33.8v79.6h0Z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="brand-text-group">
+        <span class="brand-title">Suivi de compétences</span>
+        <span class="badge-pro">Dép. en infographie</span>
+      </div>
+    </div>
+
+    <div class="controls-row">
+      <div class="input-group student-box">
+        <label>Élève :</label>
+        <select id="studentSelect" class="student-select-large" onchange="onStudentChange()"></select>
+        <button type="button" class="mini-btn teacher-only" onclick="addStudent()" title="Ajouter un élève">+ Élève</button>
+        <button type="button" class="mini-btn danger teacher-only" onclick="removeStudent()" title="Supprimer l'élève sélectionné">×</button>
+      </div>
+
+      <div class="input-group">
+        <label>Groupe :</label>
+        <select id="groupSelect" onchange="onGroupChange()">
+          <option value="J01">J01</option>
+          <option value="H01">H01</option>
+        </select>
+      </div>
+
+      <button type="button" class="icon-nav-btn" onclick="openModal('settingsModal')" title="Paramètres d'affichage">⚙️ Paramètres</button>
+      <button type="button" class="icon-nav-btn" onclick="openModal('helpModal')" title="Guide rapide de la plateforme">❓ Aide</button>
+    </div>
+  </div>
+
+  <div class="preview-banner-alert" id="previewBannerAlert">
+    <span>👁️ Aperçu Mode Élève actif — Lecture seule : aucune case à cocher interactive et aucune modification de date possible.</span>
+    <button type="button" class="mini-btn" onclick="toggleStudentMode()">Quitter l'aperçu</button>
+  </div>
+
+  <div class="content-body">
+
+    <!-- EN-TÊTE DASHBOARD ANALYTICS -->
+    <div class="dashboard-header-grid" id="dashboardHeader"></div>
+
+    <!-- SECTION TABLEAU DE BORD : AVANCEMENT OU RETARD GLOBAL DANS LA FORMATION -->
+    <div id="formationGlobalBanner"></div>
+
+    <div class="section-label-row">
+      <span class="section-label">Compétence attitrée à cet élève (ordre de l'organigramme)</span>
+      <button type="button" class="mini-btn teacher-only" id="resetCompDatesBtn" onclick="resetCurrentCompCustomDates()" style="display:none;" title="Supprimer les ajustements manuels de dates de cette compétence">↺ Réinitialiser les dates ajustées de cette compétence</button>
+    </div>
+    <div class="comp-strip" id="compButtons"></div>
+
+    <div id="dateWarning" class="warning-msg"></div>
+
+    <span class="section-label">Grille horaire (Blocs de 3,25 h / Jour de cours = 6 h 30 — cliquez sur ✎ pour ajuster une date avec note ou validez la réussite d'examen du 1er coup)</span>
+    <div class="schedule-grid" id="scheduleGrid"></div>
+
+    <!-- SECTION JOURNAL DE BORD -->
+    <div class="logbook-section" id="logbookContainer"></div>
+
+    <!-- GUIDE DE SUIVI DES 22 COMPÉTENCES -->
+    <div class="checklist-section">
+      <div class="checklist-header">
+        <span class="section-label" style="margin:0;">Guide de suivi — Compétences réussies &amp; calendrier prévu (C1 → C22)</span>
+        <span class="progress-counter" id="progressCounter">0 / 22 réussies</span>
+      </div>
+      <div class="checklist-grid" id="checklistGrid"></div>
+    </div>
+
+    <div class="notes-section">
+      <span class="section-label">Notes générales &amp; Suivi individuel</span>
+      <textarea id="notesField" oninput="saveStudentData()" placeholder="Observations générales, objectifs, particularités..."></textarea>
+    </div>
+
+    <!-- BABILLARD CENTRALISÉ DES NOTES DE PARCOURS -->
+    <div class="bulletin-board-section" id="bulletinBoardContainer"></div>
+
+    <div class="toolbar">
+      <button type="button" class="action secondary" onclick="toggleStudentMode()" id="modeBtn">👁️ Aperçu Mode Élève</button>
+      <button type="button" class="action emerald teacher-only" onclick="exportStudentInterface()" title="Télécharger un fichier HTML interactif pour cet élève">📤 Exporter interface Élève</button>
+      <button type="button" class="action primary" onclick="window.print()">🖨️ Exporter PDF / Imprimer</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE PARAMÈTRES -->
+<div class="modal-backdrop" id="settingsModal" onclick="closeModalOnBackdrop(event, 'settingsModal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">⚙️ Paramètres de l'interface</h3>
+      <button type="button" class="modal-close" onclick="closeModal('settingsModal')">×</button>
+    </div>
+
+    <span class="section-label">1. Mode d'affichage (Clair / Foncé)</span>
+    <div class="theme-options" style="margin-bottom: 18px;">
+      <button type="button" class="theme-card" id="themeCardDark" onclick="setTheme('dark')">
+        <span class="theme-card-title">🌙 Mode Foncé</span>
+        <span class="theme-card-desc">Fond sombre reposant pour l'atelier graphique.</span>
+      </button>
+      <button type="button" class="theme-card" id="themeCardLight" onclick="setTheme('light')">
+        <span class="theme-card-title">☀️ Mode Clair</span>
+        <span class="theme-card-desc">Fond clair lumineux et contrasté.</span>
+      </button>
+    </div>
+
+    <span class="section-label">2. Palette de couleurs d'accentuation (Clair & Foncé)</span>
+    <div class="theme-options">
+      <button type="button" class="theme-card" id="paletteCardRoseOrange" onclick="setPalette('rose-orange')">
+        <span class="theme-card-title">
+          <span class="swatch-pair">
+            <span class="swatch-dot" style="background:#e11d48;"></span>
+            <span class="swatch-dot" style="background:#f97316;"></span>
+          </span>
+          Rose &amp; Orange
+        </span>
+        <span class="theme-card-desc">Contraste dynamique rose framboise et orange solaire.</span>
+      </button>
+
+      <button type="button" class="theme-card" id="paletteCardGreenPurple" onclick="setPalette('green-purple')">
+        <span class="theme-card-title">
+          <span class="swatch-pair">
+            <span class="swatch-dot" style="background:#059669;"></span>
+            <span class="swatch-dot" style="background:#7c3aed;"></span>
+          </span>
+          Vert &amp; Mauve
+        </span>
+        <span class="theme-card-desc">Contraste équilibré vert émeraude et mauve profond.</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE AIDE / GUIDE RAPIDE -->
+<div class="modal-backdrop" id="helpModal" onclick="closeModalOnBackdrop(event, 'helpModal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">❓ Guide rapide — Suivi de compétences</h3>
+      <button type="button" class="modal-close" onclick="closeModal('helpModal')">×</button>
+    </div>
+    <div class="help-grid">
+      <div class="help-item">
+        <h4>1. Base de calcul : 1 jour de cours = 6 h 30</h4>
+        <p>Chaque journée complète de formation représente <strong>6 h 30</strong> (soit deux blocs de <strong>3,25 h</strong> : AM et PM). L'avance ou le retard global de l'élève est automatiquement converti en jours et heures dans le tableau de bord et le babillard.</p>
+      </div>
+      <div class="help-item">
+        <h4>2. Examen réussi du premier coup</h4>
+        <p>Dans la case <strong>Examen</strong> d'une compétence, cliquez sur <strong>« ✓ Réussi (1er coup) »</strong>. Les blocs prévus pour la récupération et la reprise sont libérés et l'élève gagne automatiquement ces jours et heures d'avance.</p>
+      </div>
+      <div class="help-item">
+        <h4>3. Éditer une date (✎) avec note justificative</h4>
+        <p>Cliquez sur <strong>✎</strong> dans n'importe quelle case pour modifier sa date et inscrire une note explicative. Le babillard affiche l'écart exact en jours et heures généré par chaque ajustement.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const HOURS_PER_DAY = 6.5;   // 1 jour de cours = 6 h 30
+const HOURS_PER_BLOCK = 3.25; // 1 bloc (AM ou PM) = 3 h 15
+
+const profNames = {
+  CB: "Camila Beatrici",
+  PB: "Pascal Brousseau",
+  MJ: "Marie-Josée Périgny",
+  MH: "Mathieu Houle",
+  PL: "Philippe Lepage"
+};
+
+const competences = [
+  { id: 1,  code: "465-011", nom: "Métier et formation (conjoint avec C2)", heures: "17,5 h", jours: "7 (avec C2)", blocs: 14, prof: "CB", examLabel: "Examen C1 & C2 (Cours 13)", examBlocks: 1, combinedWith: 2 },
+  { id: 2,  code: "465-024", nom: "Gestion d'un environnement informatique (conjoint avec C1)", heures: "29,25 h", jours: "7 (avec C1)", blocs: 14, prof: "PB", examLabel: "Examen C1 & C2 (Cours 13)", examBlocks: 1, combinedWith: 1 },
+  { id: 7,  code: "465-074", nom: "Gestion de profils colorimétriques", heures: "29,25 h", jours: "4,5", blocs: 9, prof: "MJ", examLabel: "2 h (Cours 8)", examBlocks: 1 },
+  { id: 3,  code: "465-037", nom: "Images vectorielles", heures: "104 h", jours: "16", blocs: 35, prof: "CB", examLabel: "4 h", examBlocks: 2 },
+  { id: 10, code: "465-104", nom: "Outils de révision de texte en français", heures: "61,75 h", jours: "9,5", blocs: 19, prof: "MH", examLabel: "3 h", examBlocks: 1 },
+  { id: 4,  code: "465-046", nom: "Images matricielles", heures: "120,25 h", jours: "18,5", blocs: 40, prof: "PB", examLabel: "4 h", examBlocks: 2 },
+  { id: 6,  code: "465-066", nom: "Acquisition d'images", heures: "91 h", jours: "14", blocs: 30, prof: "PB", examLabel: "2 h", examBlocks: 1 },
+  { id: 11, code: "465-116", nom: "Éléments typographiques", heures: "91 h", jours: "14", blocs: 30, prof: "MJ", examLabel: "3 h", examBlocks: 1 },
+  { id: 12, code: "465-127", nom: "Mises en pages simples pour imprimés", heures: "120,25 h", jours: "18,5", blocs: 40, prof: "CB", examLabel: "5 h", examBlocks: 2 },
+  { id: 5,  code: "465-056", nom: "Exigences et étapes de production en comm. graphique", heures: "75,75 h", jours: "11,5", blocs: 25, prof: "MJ", examLabel: "Situation (N/A)", examBlocks: 0 },
+  { id: 8,  code: "465-086", nom: "Images composites pour impression normalisées", heures: "120,25 h", jours: "18,5", blocs: 40, prof: "CB", examLabel: "5 h", examBlocks: 2 },
+  { id: 15, code: "465-156", nom: "Gabarits de mises en pages pour imprimées", heures: "120,25 h", jours: "18,5", blocs: 40, prof: "PB", examLabel: "5 h", examBlocks: 2 },
+  { id: 16, code: "465-164", nom: "Imposition et finition", heures: "61,75 h", jours: "9,5", blocs: 20, prof: "MJ", examLabel: "4 h", examBlocks: 2 },
+  { id: 18, code: "465-184", nom: "Rastérisation de documents", heures: "29,25 h", jours: "4,5", blocs: 10, prof: "MJ", examLabel: "2 h", examBlocks: 1 },
+  { id: 17, code: "465-177", nom: "Mises en pages complexes pour imprimés", heures: "120,25 h", jours: "18,5", blocs: 40, prof: "MH", examLabel: "5 h", examBlocks: 2 },
+  { id: 19, code: "465-194", nom: "Préparation de documents pour impressions numériques", heures: "58,5 h", jours: "9,5", blocs: 20, prof: "PB", examLabel: "3 h", examBlocks: 1 },
+  { id: 20, code: "465-205", nom: "Préparation de documents pour impressions offset", heures: "45,5 h", jours: "7", blocs: 15, prof: "PB", examLabel: "3 h", examBlocks: 1 },
+  { id: 9,  code: "465-096", nom: "Images composites pour interfaces visuelles", heures: "58,5 h", jours: "9,5", blocs: 20, prof: "CB", examLabel: "3 h", examBlocks: 1 },
+  { id: 13, code: "465-137", nom: "Mises en pages simples pour interfaces visuelles", heures: "104 h", jours: "16", blocs: 35, prof: "PL", examLabel: "4 h", examBlocks: 2 },
+  { id: 14, code: "465-146", nom: "Gabarits de mise en pages simples pour interfaces visuelles", heures: "120,25 h", jours: "18,5", blocs: 40, prof: "PL", examLabel: "5 h", examBlocks: 2 },
+  { id: 21, code: "465-216", nom: "Gestion d'une micro-entreprise en comm. graphique", heures: "104 h", jours: "16", blocs: 35, prof: "MH", examLabel: "2 h", examBlocks: 1 },
+  { id: 22, code: "465-228", nom: "Intégration au milieu de travail", heures: "117,5 h", jours: "17,5", blocs: 40, prof: "MH", examLabel: "Stage (N/A)", examBlocks: 0 }
+];
+
+/* JOURNAUX DE BORD (C1-C2, C07, C10) */
+const combinedC1C2Logbook = [
+  { cours: 1, part: "Compétence 02 — Les leçons 201 à 211 doivent se faire en classe pour le groupe H01", lessons: [{ title: "Accueil & Leçons 201-202", tasks: [{ id: "c12_1", text: "Accueil, distribution du matériel, signature des règlements, etc." }, { id: "c12_2", text: "Leçon 201 : Ouverture du poste informatique et ajustement de session" }, { id: "c12_7", text: "Leçon 202 : Naviguer sur le Web & Formulaires de la rentrée", type: "init" }] }] },
+  { cours: 2, lessons: [{ title: "Leçons 203 à 207 : Portail, Moodle, Slack/Teams, Utilitaires, Adobe CC", tasks: [{ id: "c12_10", text: "Leçon 203 : Le portail", type: "init" }, { id: "c12_11", text: "Leçon 204 : Moodle et exercice téléchargement" }, { id: "c12_13", text: "Leçon 205 : Slack et Teams (exercices 205A et 205B)", type: "init" }, { id: "c12_16", text: "Leçon 207 : Connexion à Adobe Creative Cloud", type: "init" }] }] },
+  { cours: 3, lessons: [{ title: "Leçon 208 : Le Finder (208A à 208E)", tasks: [{ id: "c12_17", text: "Lire la leçon 208 du cahier de notes" }, { id: "c12_18", text: "Compléter les exercices 208A à 208E", type: "init" }] }] },
+  { cours: 4, lessons: [{ title: "Leçons 209 à 211 & Exercice Synthèse 201", tasks: [{ id: "c12_23", text: "Leçons 209 et 210 : Le Dock et la corbeille", type: "init" }, { id: "c12_25", text: "Leçon 211 : Les composantes du Mac et branchement", type: "init" }, { id: "c12_27", text: "Exercice synthèse 201B : Appropriation d'une session (Examen)", type: "init" }] }] },
+  { cours: 5, part: "Les leçons 212 à 227 peuvent se faire à distance pour le groupe H01", lessons: [{ title: "Leçons 212 à 218 : Matériel, clavier, souris, ergonomie et préférences", tasks: [{ id: "c12_28", text: "Lire et compléter les leçons 212 à 218", type: "init" }] }] },
+  { cours: 6, lessons: [{ title: "Leçons 219 à 227 : Applications, stockage, mémoire, nuages et fichiers", tasks: [{ id: "c12_35", text: "Compléter les leçons et exercices 219 à 227B", type: "init" }] }] },
+  { cours: 7, part: "Compétence 01 (Changez de cahier) — Leçons 101 à 111", lessons: [{ title: "Leçons 101 à 105 : Individualisé, métiers et marché du travail", tasks: [{ id: "c12_47", text: "Compléter les questionnaires et exercices 101 à 105", type: "auto" }] }] },
+  { cours: 8, lessons: [{ title: "Leçons 106 à 108 : Tâches, normes du travail et SST", tasks: [{ id: "c12_58", text: "Compléter les exercices et questionnaires 106 à 108", type: "auto" }] }] },
+  { cours: 9, lessons: [{ title: "Leçons 109 et 110 : Le DEP en Infographie et les 22 compétences", tasks: [{ id: "c12_64", text: "Questionnaire 109 et 5 exercices d'exploration C03, C04, C11, C14, C16", type: "init" }] }] },
+  { cours: 10, lessons: [{ title: "Leçon 111 : Confirmation de votre choix d'études / carrière", tasks: [{ id: "c12_67", text: "Tests visuels, mots croisés et travail synthèse 111", type: "init" }] }] },
+  { cours: 11, part: "Compétence 02 — Leçons 228 à 233 & Synthèses 202-203", lessons: [{ title: "Impressions, serveurs, diagnostic et transfert de fichiers", tasks: [{ id: "c12_70", text: "Compléter les leçons 228 à 233 et synthèses 202A/B et 203A/B", type: "init" }] }] },
+  { cours: 12, part: "4. Évaluations Compétence 01 et 02", lessons: [{ title: "Évaluation formative (Prétest)", tasks: [{ id: "c12_77", text: "Cours 12 : Évaluation formative (Prétest compétence 02)", type: "init" }] }] },
+  { cours: 13, lessons: [{ title: "Évaluation sommative (Examen)", tasks: [{ id: "c12_78", text: "Cours 13 : Évaluation sommative (Examen compétence 01 et 02)", type: "init" }] }] },
+  { cours: 14, lessons: [{ title: "Récupération / Examen de reprise", tasks: [{ id: "c12_79", text: "Cours 14 : Récupération / Examen de reprise (si applicable)", type: "init" }] }] }
+];
+
+const logbookC07 = [
+  { cours: 1, part: "3. Exercices d'apprentissage — Gestion de profils colorimétriques (465-074)", lessons: [{ title: "Chapitre 01 - Introduction", tasks: [{ id: "c07_1", text: "Lecture des pages 7 à 11, présentation de la démarche pédagogique." }] }] },
+  { cours: 2, lessons: [{ title: "Chapitres 02 à 05 - Vocabulaire, couleur, gestion des couleurs, étalonnage manuel", tasks: [{ id: "c07_3", text: "Remise des fichiers PDF (Quadrichromie, perception, espaces, étalonnage manuel)", type: "depot" }] }] },
+  { cours: 3, lessons: [{ title: "Chapitre 06 - Le colorimètre", tasks: [{ id: "c07_14", text: "07 étalonnage Calibrite Profiler.pdf & observation colorimètre", type: "depot" }] }] },
+  { cours: 4, lessons: [{ title: "Chapitre 07 - Gérer les couleurs avec Photoshop", tasks: [{ id: "c07_19", text: "Expérimentations vidéos et remise de 07_08_6.pdf à 07_08_8.pdf", type: "depot" }] }] },
+  { cours: 5, part: "Rappel : Compléter la demande d'évaluation pour la prochaine compétence", lessons: [{ title: "Travaux trav_07_101 à trav_07_108", tasks: [{ id: "c07_25", text: "Faire les travaux trav_07_101 à trav_07_108 et envoyer par Slack", type: "depot" }] }] },
+  { cours: 6, lessons: [{ title: "Travaux pratiques 07_P01 à 07_P24", tasks: [{ id: "c07_26", text: "Compléter et remettre les travaux 07_P01 à 07_P24", type: "depot" }] }] },
+  { cours: 7, part: "Évaluations Compétence 07", lessons: [{ title: "Prétest", tasks: [{ id: "c07_32", text: "Cours 7 : Évaluation formative (Prétest)", type: "init" }] }] },
+  { cours: 8, lessons: [{ title: "Examen", tasks: [{ id: "c07_33", text: "Cours 8 : Évaluation sommative (Examen)", type: "init" }] }] },
+  { cours: 9, lessons: [{ title: "Récupération et reprise", tasks: [{ id: "c07_34", text: "Cours 9 : Récupération et examen de reprise (si applicable)", type: "init" }] }] }
+];
+
+const logbooksData = { 1: combinedC1C2Logbook, 2: combinedC1C2Logbook, 7: logbookC07 };
+
+const nonClassDays = new Set([
+  "2026-07-01","2026-08-03","2026-08-04","2026-08-17","2026-09-07","2026-09-25",
+  "2026-10-09","2026-10-12","2026-10-23","2026-11-13","2026-12-11","2026-12-24",
+  "2026-12-25","2026-12-28","2026-12-29","2026-12-30","2026-12-31","2027-01-01",
+  "2027-01-04","2027-01-05","2027-01-06","2027-02-19","2027-03-01","2027-03-02",
+  "2027-03-03","2027-03-04","2027-03-05","2027-03-26","2027-03-29","2027-04-23",
+  "2027-05-21","2027-05-24","2027-06-11","2027-06-24","2027-07-01","2027-07-02",
+  "2027-07-05","2027-07-06","2027-07-07","2027-07-08","2027-07-09","2027-07-12",
+  "2027-07-13","2027-07-14","2027-07-15","2027-07-16","2027-07-19","2027-07-20",
+  "2027-07-21","2027-07-22","2027-07-23","2027-07-26","2027-07-27","2027-07-28",
+  "2027-07-29","2027-07-30","2027-08-02","2027-08-03","2027-08-16","2027-09-06",
+  "2027-09-24","2027-10-08","2027-10-11","2027-10-22","2027-11-12","2027-12-03",
+  "2027-12-24","2027-12-27","2027-12-28","2027-12-29","2027-12-30","2027-12-31",
+  "2028-01-03","2028-01-04","2028-01-05","2028-02-11","2028-03-06","2028-03-07",
+  "2028-03-08","2028-03-09","2028-03-10","2028-03-24","2028-04-14","2028-04-17",
+  "2028-05-05","2028-05-22","2028-06-09","2028-06-26","2028-06-27","2028-06-28",
+  "2028-06-29","2028-06-30"
+]);
+
+const milestones = { 10: "Fin 30 h", 15: "Fin 45 h", 20: "Fin 60 h", 25: "Fin 75 h", 30: "Fin 90 h", 35: "Fin 105 h", 40: "Fin 120 h" };
+const joursSemaine = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+const moisCourts = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juill.", "août", "sept.", "oct.", "nov.", "déc."];
+
+function formatDateISO(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+function getTodayISO() { return formatDateISO(new Date()); }
+function isValidIsoDateString(str) {
+  if (!str || typeof str !== "string") return false;
+  const parts = str.split("-");
+  if (parts.length !== 3) return false;
+  const y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+  return !isNaN(y) && !isNaN(m) && !isNaN(d) && y >= 2000 && y <= 2100 && m >= 1 && m <= 12 && d >= 1 && d <= 31;
+}
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+/* FORMATAGE DES HEURES ET JOURS (1 JOUR DE COURS = 6 H 30) */
+function formatHoursFrench(absHours) {
+  const totalMinutes = Math.round(absHours * 60);
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  if (h === 0 && m === 0) return "0 h";
+  if (m === 0) return `${h} h`;
+  return `${h} h ${String(m).padStart(2, '0')}`;
+}
+
+function formatFrenchDaysCount(absDays) {
+  const formatted = Number.isInteger(absDays) ? String(absDays) : absDays.toFixed(1).replace(".", ",");
+  return absDays > 1 ? `${formatted} jours` : `${formatted} jour`;
+}
+
+function formatDaysAndHours(absDays) {
+  const absHours = absDays * HOURS_PER_DAY;
+  return `${formatFrenchDaysCount(absDays)} (${formatHoursFrench(absHours)})`;
+}
+
+let selectedId = 1;
+let studentPreviewMode = false;
+let onlyProfFilter = false;
+let editingSlotIndex = null;
+let logbookExpandedByComp = {};
+let collapsedCoursMap = {};
+
+const STORAGE_KEY = "planif_infographie_db_v14";
+const THEME_KEY = "planif_infographie_theme";
+const PALETTE_KEY = "planif_infographie_palette";
+
+let db = {
+  students: ["Élève exemple 1", "Élève exemple 2"],
+  records: {
+    "Élève exemple 1": {
+      group: "J01", activeCompId: 1, formationStartDate: getTodayISO(),
+      initialEndDateIso: null, initialEndPeriod: null,
+      slotOverrides: {}, examPassedFirstTry: {}, bulletinNotes: [],
+      completed: [], notes: "", studentTasks: {}, profTasks: {}
+    },
+    "Élève exemple 2": {
+      group: "H01", activeCompId: 1, formationStartDate: getTodayISO(),
+      initialEndDateIso: null, initialEndPeriod: null,
+      slotOverrides: {}, examPassedFirstTry: {}, bulletinNotes: [],
+      completed: [], notes: "", studentTasks: {}, profTasks: {}
+    }
+  }
+};
+
+function setTheme(theme) {
+  document.body.classList.toggle("theme-light", theme === "light");
+  try { localStorage.setItem(THEME_KEY, theme === "light" ? "light" : "dark"); } catch (e) {}
+  updateAppearanceUI();
+}
+function setPalette(palette) {
+  document.body.classList.toggle("palette-green-purple", palette === "green-purple");
+  try { localStorage.setItem(PALETTE_KEY, palette === "green-purple" ? "green-purple" : "rose-orange"); } catch (e) {}
+  updateAppearanceUI();
+}
+function updateAppearanceUI() {
+  const isLight = document.body.classList.contains("theme-light");
+  const isGreenPurple = document.body.classList.contains("palette-green-purple");
+  const darkCard = document.getElementById("themeCardDark");
+  const lightCard = document.getElementById("themeCardLight");
+  if (darkCard && lightCard) { darkCard.classList.toggle("selected", !isLight); lightCard.classList.toggle("selected", isLight); }
+  const pRose = document.getElementById("paletteCardRoseOrange");
+  const pGreen = document.getElementById("paletteCardGreenPurple");
+  if (pRose && pGreen) { pRose.classList.toggle("selected", !isGreenPurple); pGreen.classList.toggle("selected", isGreenPurple); }
+}
+function initAppearance() {
+  let savedTheme = "dark", savedPalette = "rose-orange";
+  try { savedTheme = localStorage.getItem(THEME_KEY) || "dark"; savedPalette = localStorage.getItem(PALETTE_KEY) || "rose-orange"; } catch (e) {}
+  setTheme(savedTheme); setPalette(savedPalette);
+}
+function openModal(id) { const el = document.getElementById(id); if (el) el.classList.add("open"); }
+function closeModal(id) { const el = document.getElementById(id); if (el) el.classList.remove("open"); }
+function closeModalOnBackdrop(event, id) { if (event.target.id === id) closeModal(id); }
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeModal("settingsModal"); closeModal("helpModal");
+    if (editingSlotIndex !== null) { editingSlotIndex = null; renderGrid(); }
+  }
+});
+
+function loadDB() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("planif_infographie_db_v13");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && Array.isArray(parsed.students) && parsed.students.length > 0) db = parsed;
+    }
+  } catch (e) {}
+}
+function saveDB() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); } catch (e) {} }
+function getEffectiveCompKey(compId) { return (compId === 1 || compId === 2) ? 1 : compId; }
+
+function getLastExamSlotIndex(comp) {
+  if (!comp) return null;
+  if (comp.id === 1 || comp.id === 2) return 13;
+  if (comp.id === 7) return 8;
+  if (comp.examBlocks === 2 || comp.examBlocks === 1) return comp.blocs - 2;
+  return null;
+}
+
+function getCurrentStudentRecord() {
+  const name = document.getElementById("studentSelect").value;
+  if (!db.records[name]) {
+    db.records[name] = {
+      group: "J01", activeCompId: 1, formationStartDate: getTodayISO(),
+      initialEndDateIso: null, initialEndPeriod: null,
+      slotOverrides: {}, examPassedFirstTry: {}, bulletinNotes: [],
+      completed: [], notes: "", studentTasks: {}, profTasks: {}
+    };
+  }
+  const rec = db.records[name];
+  if (!isValidIsoDateString(rec.formationStartDate)) rec.formationStartDate = getTodayISO();
+  if (!rec.slotOverrides) rec.slotOverrides = {};
+  if (!rec.examPassedFirstTry) rec.examPassedFirstTry = {};
+  if (!Array.isArray(rec.bulletinNotes)) rec.bulletinNotes = [];
+  if (!rec.studentTasks) rec.studentTasks = {};
+  if (!rec.profTasks) rec.profTasks = {};
+  return rec;
+}
+
+function renderStudentDropdown(selectedName) {
+  const sel = document.getElementById("studentSelect");
+  sel.innerHTML = "";
+  db.students.forEach(st => {
+    const opt = document.createElement("option");
+    opt.value = st; opt.textContent = st;
+    if (st === selectedName) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function addStudent() {
+  if (studentPreviewMode) return;
+  const newName = prompt("Entrez le nom complet du nouvel élève :");
+  if (!newName || !newName.trim()) return;
+  const clean = newName.trim();
+  if (!db.students.includes(clean)) {
+    db.students.push(clean);
+    db.students.sort((a, b) => a.localeCompare(b, 'fr'));
+    db.records[clean] = {
+      group: "J01", activeCompId: 1, formationStartDate: getTodayISO(),
+      initialEndDateIso: null, initialEndPeriod: null,
+      slotOverrides: {}, examPassedFirstTry: {}, bulletinNotes: [],
+      completed: [], notes: "", studentTasks: {}, profTasks: {}
+    };
+  }
+  editingSlotIndex = null; saveDB(); renderStudentDropdown(clean); onStudentChange();
+}
+
+function removeStudent() {
+  if (studentPreviewMode) return;
+  if (db.students.length <= 1) { alert("Vous devez conserver au moins un élève dans la liste."); return; }
+  const current = document.getElementById("studentSelect").value;
+  if (confirm(`Retirer "${current}" de la liste des élèves ?`)) {
+    db.students = db.students.filter(s => s !== current);
+    delete db.records[current];
+    editingSlotIndex = null; saveDB(); renderStudentDropdown(db.students[0]); onStudentChange();
+  }
+}
+
+function onStudentChange() {
+  const rec = getCurrentStudentRecord();
+  selectedId = rec.activeCompId || 1;
+  editingSlotIndex = null;
+  document.getElementById("groupSelect").value = rec.group || "J01";
+  document.getElementById("notesField").value = rec.notes || "";
+  renderGrid();
+}
+
+function onGroupChange() {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  rec.group = document.getElementById("groupSelect").value;
+  editingSlotIndex = null;
+  const baseline = computeBaselineProgramSchedule(rec.formationStartDate, rec.group);
+  if (baseline.formationEndSlot) {
+    rec.initialEndDateIso = baseline.formationEndSlot.iso;
+    rec.initialEndPeriod = baseline.formationEndSlot.period;
+  }
+  saveDB(); renderGrid();
+}
+
+function onFormationStartChange() {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  const dInput = document.getElementById("formationStartDateInput");
+  if (dInput && isValidIsoDateString(dInput.value)) {
+    rec.formationStartDate = dInput.value;
+    editingSlotIndex = null;
+    const baseline = computeBaselineProgramSchedule(rec.formationStartDate, rec.group || "J01");
+    if (baseline.formationEndSlot) {
+      rec.initialEndDateIso = baseline.formationEndSlot.iso;
+      rec.initialEndPeriod = baseline.formationEndSlot.period;
+    }
+  }
+  saveDB(); renderGrid();
+}
+
+function saveStudentData() {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  rec.group = document.getElementById("groupSelect").value;
+  rec.activeCompId = selectedId;
+  rec.notes = document.getElementById("notesField").value;
+  saveDB();
+}
+
+function toggleCompleted(compId) {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  const completedSet = new Set(rec.completed || []);
+  if (completedSet.has(compId)) completedSet.delete(compId); else completedSet.add(compId);
+  rec.completed = Array.from(completedSet);
+  saveDB(); renderGrid();
+}
+
+function toggleExamFirstTry(compId) {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  const compKey = getEffectiveCompKey(compId);
+  const newVal = !rec.examPassedFirstTry[compKey];
+  rec.examPassedFirstTry[compKey] = newVal;
+  const completedSet = new Set(rec.completed || []);
+  if (newVal) {
+    if (compKey === 1) { completedSet.add(1); completedSet.add(2); } else completedSet.add(compKey);
+  }
+  rec.completed = Array.from(completedSet);
+  saveDB(); renderGrid();
+}
+
+function toggleStudentTask(taskId) { if (studentPreviewMode) return; const rec = getCurrentStudentRecord(); rec.studentTasks[taskId] = !rec.studentTasks[taskId]; saveDB(); renderGrid(); }
+function toggleProfTask(taskId) { if (studentPreviewMode) return; const rec = getCurrentStudentRecord(); rec.profTasks[taskId] = !rec.profTasks[taskId]; saveDB(); renderGrid(); }
+function toggleOnlyProfFilter() { onlyProfFilter = !onlyProfFilter; renderLogbook(lastGeneratedSlots); }
+
+function toggleAllLogbookLessons() {
+  const compKey = getEffectiveCompKey(selectedId);
+  const currentOpen = logbookExpandedByComp[compKey] !== false;
+  const nextOpen = !currentOpen;
+  logbookExpandedByComp[compKey] = nextOpen;
+  (logbooksData[selectedId] || []).forEach(b => {
+    const k = `${compKey}_${b.cours}`;
+    if (nextOpen) delete collapsedCoursMap[k]; else collapsedCoursMap[k] = true;
+  });
+  renderLogbook(lastGeneratedSlots);
+}
+
+function toggleSingleCoursLessons(coursNum) {
+  const compKey = getEffectiveCompKey(selectedId);
+  const k = `${compKey}_${coursNum}`;
+  if (logbookExpandedByComp[compKey] === false) {
+    logbookExpandedByComp[compKey] = true;
+    (logbooksData[selectedId] || []).forEach(b => {
+      if (b.cours !== coursNum) collapsedCoursMap[`${compKey}_${b.cours}`] = true; else delete collapsedCoursMap[k];
+    });
+  } else {
+    collapsedCoursMap[k] = !collapsedCoursMap[k];
+  }
+  renderLogbook(lastGeneratedSlots);
+}
+
+function formatDateFr(d) { return `${joursSemaine[d.getDay()]} ${d.getDate()} ${moisCourts[d.getMonth()]}`; }
+function formatDateFrWithYear(d) { return `${joursSemaine[d.getDay()]} ${d.getDate()} ${moisCourts[d.getMonth()]} ${d.getFullYear()}`; }
+
+function isValidSlot(dateObj, period, group) {
+  const dow = dateObj.getDay();
+  if (dow === 0 || dow === 6) return false;
+  if (nonClassDays.has(formatDateISO(dateObj))) return false;
+  if (dow === 5) {
+    if (group === "H01") return false;
+    if (group === "J01" && period === "PM") return false;
+  }
+  return true;
+}
+
+function advanceOneSlotPointer(dateObj, period) {
+  const nextDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+  if (period === "AM") return { dateObj: nextDate, period: "PM" };
+  nextDate.setDate(nextDate.getDate() + 1);
+  return { dateObj: nextDate, period: "AM" };
+}
+
+function generateSlots(startIso, initialPeriod, group, count) {
+  const slots = [];
+  if (!isValidIsoDateString(startIso)) return slots;
+  const parts = startIso.split('-');
+  let curr = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+  if (isNaN(curr.getTime())) return slots;
+  let period = initialPeriod || "AM";
+  let safety = 0;
+  while (slots.length < count && safety < 5000) {
+    if (isValidSlot(curr, period, group)) {
+      const iso = formatDateISO(curr);
+      const endHour = period === "AM" ? 12 : 17;
+      slots.push({
+        iso, dateObj: new Date(curr.getFullYear(), curr.getMonth(), curr.getDate()),
+        dateText: formatDateFr(curr), dateTextYear: formatDateFrWithYear(curr),
+        period, slotEnd: new Date(curr.getFullYear(), curr.getMonth(), curr.getDate(), endHour, 0, 0)
+      });
+    }
+    const nxt = advanceOneSlotPointer(curr, period);
+    curr = nxt.dateObj; period = nxt.period; safety++;
+  }
+  return slots;
+}
+
+function computeBaselineProgramSchedule(formationStartDate, group) {
+  const scheduleByComp = {};
+  let cursorIso = isValidIsoDateString(formationStartDate) ? formationStartDate : getTodayISO();
+  let cursorPeriod = "AM";
+
+  competences.forEach((comp, idx) => {
+    if (comp.id === 2 && scheduleByComp[1]) { scheduleByComp[2] = scheduleByComp[1]; return; }
+    const slots = generateSlots(cursorIso, cursorPeriod, group, comp.blocs);
+    const firstSlot = slots[0] || null;
+    const lastSlot = slots[slots.length - 1] || null;
+    scheduleByComp[comp.id] = { compId: comp.id, orderIndex: idx + 1, slots, startSlot: firstSlot, endSlot: lastSlot };
+    if (lastSlot) {
+      const nxt = advanceOneSlotPointer(lastSlot.dateObj, lastSlot.period);
+      cursorIso = formatDateISO(nxt.dateObj); cursorPeriod = nxt.period;
+    }
+  });
+
+  const firstComp = scheduleByComp[competences[0].id];
+  const lastComp = scheduleByComp[competences[competences.length - 1].id];
+  return { byComp: scheduleByComp, formationStartSlot: firstComp ? firstComp.startSlot : null, formationEndSlot: lastComp ? lastComp.endSlot : null };
+}
+
+function computeFullProgramSchedule(rec, group) {
+  const scheduleByComp = {};
+  let cursorIso = isValidIsoDateString(rec.formationStartDate) ? rec.formationStartDate : getTodayISO();
+  let cursorPeriod = "AM";
+
+  competences.forEach((comp, idx) => {
+    if (comp.id === 2 && scheduleByComp[1]) {
+      scheduleByComp[2] = Object.assign({}, scheduleByComp[1], { compId: 2, orderIndex: idx + 1 });
+      return;
+    }
+
+    const compKey = getEffectiveCompKey(comp.id);
+    const compSlotOverrides = (rec.slotOverrides && rec.slotOverrides[compKey]) || {};
+    const passedFirstTry = !!(rec.examPassedFirstTry && rec.examPassedFirstTry[compKey]);
+    const lastExamIdx = getLastExamSlotIndex(comp);
+
+    const slots = [];
+    const customSlotsMap = {};
+    const slotDeltasMap = {};
+    let postExamNextCursor = null;
+
+    for (let sIdx = 1; sIdx <= comp.blocs; sIdx++) {
+      const isSkippedAfterExam = passedFirstTry && lastExamIdx !== null && sIdx > lastExamIdx;
+      const naturalPreview = generateSlots(cursorIso, cursorPeriod, group, 1)[0] || null;
+
+      if (!isSkippedAfterExam) {
+        const ov = compSlotOverrides[sIdx];
+        if (ov && isValidIsoDateString(ov.startDate)) {
+          cursorIso = ov.startDate;
+          cursorPeriod = ov.startPeriod || "AM";
+          customSlotsMap[sIdx] = true;
+        }
+      }
+
+      const generatedOne = generateSlots(cursorIso, cursorPeriod, group, 1);
+      const slot = generatedOne[0] || null;
+      if (slot) {
+        slot.isCustomAnchor = !isSkippedAfterExam && !!customSlotsMap[sIdx];
+        slot.isSkippedAfterExam = isSkippedAfterExam;
+        if (slot.isCustomAnchor && naturalPreview) {
+          slotDeltasMap[sIdx] = computeClassDaysDelta(naturalPreview.iso, naturalPreview.period, slot, group);
+        }
+        slots.push(slot);
+
+        const nxt = advanceOneSlotPointer(slot.dateObj, slot.period);
+        cursorIso = formatDateISO(nxt.dateObj);
+        cursorPeriod = nxt.period;
+
+        if (passedFirstTry && sIdx === lastExamIdx) {
+          postExamNextCursor = { iso: cursorIso, period: cursorPeriod };
+        }
+      }
+    }
+
+    if (passedFirstTry && postExamNextCursor) {
+      cursorIso = postExamNextCursor.iso;
+      cursorPeriod = postExamNextCursor.period;
+    }
+
+    const firstSlot = slots[0] || null;
+    const effectiveEndSlot = (passedFirstTry && lastExamIdx && slots[lastExamIdx - 1])
+      ? slots[lastExamIdx - 1]
+      : (slots[slots.length - 1] || null);
+
+    scheduleByComp[comp.id] = {
+      compId: comp.id, orderIndex: idx + 1, slots,
+      startSlot: firstSlot, endSlot: effectiveEndSlot, effectiveEndSlot,
+      passedFirstTry, lastExamIdx, customSlotsMap, slotDeltasMap,
+      hasAnyCustomSlot: Object.keys(customSlotsMap).length > 0
+    };
+  });
+
+  const firstCompSched = scheduleByComp[competences[0].id];
+  const lastCompSched = scheduleByComp[competences[competences.length - 1].id];
+
+  return {
+    byComp: scheduleByComp,
+    formationStartSlot: firstCompSched ? firstCompSched.startSlot : null,
+    formationEndSlot: lastCompSched ? lastCompSched.effectiveEndSlot : null
+  };
+}
+
+function computeClassDaysDelta(initialEndIso, initialEndPeriod, currentEndSlot, group) {
+  if (!isValidIsoDateString(initialEndIso) || !currentEndSlot) return 0;
+  const initPer = initialEndPeriod || "PM";
+  const currIso = currentEndSlot.iso;
+  const currPer = currentEndSlot.period;
+
+  if (initialEndIso === currIso && initPer === currPer) return 0;
+
+  const pInit = initialEndIso.split("-");
+  const initDate = new Date(parseInt(pInit[0], 10), parseInt(pInit[1], 10) - 1, parseInt(pInit[2], 10));
+  const currDate = currentEndSlot.dateObj;
+  const initIsBeforeCurr = (initDate < currDate) || (initialEndIso === currIso && initPer === "AM" && currPer === "PM");
+
+  let startD, startP, endIso, endP, sign;
+  if (initIsBeforeCurr) {
+    const nxt = advanceOneSlotPointer(initDate, initPer);
+    startD = nxt.dateObj; startP = nxt.period; endIso = currIso; endP = currPer; sign = -1;
+  } else {
+    const nxt = advanceOneSlotPointer(currDate, currPer);
+    startD = nxt.dateObj; startP = nxt.period; endIso = initialEndIso; endP = initPer; sign = 1;
+  }
+
+  let blocksDiff = 0, c = startD, p = startP, safety = 0;
+  while (safety < 5000) {
+    const cIso = formatDateISO(c);
+    if (isValidSlot(c, p, group)) blocksDiff++;
+    if (cIso === endIso && p === endP) break;
+    const nxt = advanceOneSlotPointer(c, p);
+    c = nxt.dateObj; p = nxt.period; safety++;
+  }
+  const roundedDays = Math.round((blocksDiff / 2) * 2) / 2;
+  return sign * roundedDays;
+}
+
+function computePacingMetrics(slots) {
+  const blocks = logbooksData[selectedId];
+  const rec = getCurrentStudentRecord();
+  const now = new Date();
+  const todayIso = formatDateISO(now);
+  if (!blocks || slots.length === 0) return null;
+
+  let totalTasks = 0, studentDoneTotal = 0, completedCoursCount = 0, expectedCoursByNow = 0;
+  const coursStats = {};
+
+  blocks.forEach(b => {
+    let cTotal = 0, cDone = 0;
+    b.lessons.forEach(l => l.tasks.forEach(t => {
+      cTotal++; totalTasks++;
+      if (rec.studentTasks[t.id]) { cDone++; studentDoneTotal++; }
+    }));
+    const pct = cTotal > 0 ? Math.round((cDone / cTotal) * 100) : 0;
+    const isComplete = cTotal > 0 && cDone === cTotal;
+    if (isComplete) completedCoursCount++;
+
+    const slot = slots[b.cours - 1];
+    const isPast = slot && !slot.isSkippedAfterExam ? now > slot.slotEnd : false;
+    const isToday = slot && !slot.isSkippedAfterExam ? slot.iso === todayIso : false;
+    if (isPast) expectedCoursByNow++;
+    coursStats[b.cours] = { done: cDone, total: cTotal, pct, isComplete, isPast, isToday };
+  });
+
+  return { now, todayIso, totalTasks, studentDoneTotal, totalLogbookCours: blocks.length, completedCoursCount, expectedCoursByNow, coursStats };
+}
+
+/* RENDU DU TABLEAU DE BORD */
+function renderDashboardHeader(slots, programSchedule) {
+  const container = document.getElementById("dashboardHeader");
+  const globalBanner = document.getElementById("formationGlobalBanner");
+  const studentName = document.getElementById("studentSelect").value;
+  const group = document.getElementById("groupSelect").value;
+  const comp = competences.find(c => c.id === selectedId);
+  const rec = getCurrentStudentRecord();
+  const completedSet = new Set(rec.completed || []);
+  const metrics = computePacingMetrics(slots);
+  const now = new Date();
+  const todayLabel = formatDateFr(now);
+  const currentCompSched = programSchedule.byComp[selectedId];
+
+  if (!isValidIsoDateString(rec.initialEndDateIso)) {
+    const baseline = computeBaselineProgramSchedule(rec.formationStartDate, group);
+    if (baseline.formationEndSlot) {
+      rec.initialEndDateIso = baseline.formationEndSlot.iso;
+      rec.initialEndPeriod = baseline.formationEndSlot.period;
+      saveDB();
+    }
+  }
+
+  const formationEndLabel = programSchedule.formationEndSlot
+    ? `${programSchedule.formationEndSlot.dateTextYear} • ${programSchedule.formationEndSlot.period}`
+    : "—";
+
+  const daysDelta = computeClassDaysDelta(rec.initialEndDateIso, rec.initialEndPeriod, programSchedule.formationEndSlot, group);
+  const absDays = Math.abs(daysDelta);
+  const formattedDaysAndHours = formatDaysAndHours(absDays);
+
+  let varianceBadgeHtml = "";
+  if (daysDelta > 0) {
+    varianceBadgeHtml = `<span class="hero-variance-pill ahead">+${formattedDaysAndHours} d'avance</span>`;
+  } else if (daysDelta < 0) {
+    varianceBadgeHtml = `<span class="hero-variance-pill behind">-${formattedDaysAndHours} de retard</span>`;
+  } else {
+    varianceBadgeHtml = `<span class="hero-variance-pill ontime">Dans les temps • 0 j (0 h)</span>`;
+  }
+
+  let initialEndSubHtml = "";
+  let initialEndStr = "—";
+  if (isValidIsoDateString(rec.initialEndDateIso)) {
+    const p = rec.initialEndDateIso.split("-");
+    const dInit = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+    initialEndStr = `${formatDateFrWithYear(dInit)} • ${rec.initialEndPeriod || "PM"}`;
+    if (daysDelta !== 0) {
+      initialEndSubHtml = `<span class="dash-fdate-sub">Fin initiale : ${formatDateFrWithYear(dInit)}</span>`;
+    }
+  }
+
+  /* BANDEAU DÉDIÉ DANS LE TABLEAU DE BORD POUR L'ENSEMBLE DE LA FORMATION */
+  if (globalBanner) {
+    let bannerStateClass = "ontime";
+    let bannerIcon = "⏱️";
+    let bannerMainText = "Dans les temps — 0 jour (0 h) d'écart sur l'ensemble de la formation";
+    if (daysDelta > 0) {
+      bannerStateClass = "ahead";
+      bannerIcon = "🚀";
+      bannerMainText = `Avance globale de +${formattedDaysAndHours} dans l'ensemble de la formation`;
+    } else if (daysDelta < 0) {
+      bannerStateClass = "behind";
+      bannerIcon = "⚠️";
+      bannerMainText = `Retard global de ${formattedDaysAndHours} dans l'ensemble de la formation`;
+    }
+
+    globalBanner.innerHTML = `
+      <div class="formation-global-banner ${bannerStateClass}">
+        <div class="fgb-left">
+          <div class="fgb-icon">${bannerIcon}</div>
+          <div>
+            <span class="fgb-title">Situation globale de la formation (C1 → C22 • 1 jour de cours = 6 h 30)</span>
+            <span class="fgb-main">${bannerMainText}</span>
+          </div>
+        </div>
+        <div class="fgb-right">
+          <div class="fgb-stat-box">
+            <span>Fin initiale prévue</span>
+            <strong>${initialEndStr}</strong>
+          </div>
+          <div class="fgb-stat-box">
+            <span>Fin projetée actuelle</span>
+            <strong>${formationEndLabel}</strong>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const activeSlots = slots.filter(s => !s.isSkippedAfterExam);
+  const remainingSlots = activeSlots.filter(s => s.slotEnd >= now);
+  const remainingBlocksCount = remainingSlots.length;
+  const uniqueRemainingDays = new Set(remainingSlots.map(s => s.iso)).size;
+  const timeProgressPct = activeSlots.length > 0
+    ? Math.min(100, Math.max(0, Math.round(((activeSlots.length - remainingBlocksCount) / activeSlots.length) * 100)))
+    : 0;
+  const effectiveLastSlot = (currentCompSched && currentCompSched.effectiveEndSlot) || activeSlots[activeSlots.length - 1];
+  const endDateStr = effectiveLastSlot ? `${effectiveLastSlot.dateText} • ${effectiveLastSlot.period}` : "—";
+
+  let compPct = 0, tasksDone = 0, tasksTotal = 0;
+  if (metrics && metrics.totalTasks > 0) {
+    tasksDone = metrics.studentDoneTotal; tasksTotal = metrics.totalTasks;
+    compPct = Math.round((tasksDone / tasksTotal) * 100);
+  } else {
+    compPct = timeProgressPct;
+  }
+  const remainingPct = 100 - compPct;
+  const radius = 42, circumference = 2 * Math.PI * radius;
+  const dashOffset = circumference - (compPct / 100) * circumference;
+
+  let sparkBarsHtml = "";
+  if (metrics) {
+    const { coursStats } = metrics;
+    for (let c = 1; c <= metrics.totalLogbookCours; c++) {
+      const st = coursStats[c];
+      const h = Math.max(22, st ? st.pct : 22);
+      let cls = "";
+      if (st) {
+        if (st.isComplete) cls = "done";
+        else if (st.isPast) cls = "overdue";
+        else if (st.isToday) cls = "today";
+        else if (st.pct > 0) cls = "partial";
+      }
+      sparkBarsHtml += `<div class="dash-spark-col ${cls}" style="height:${h}%" title="Cours ${c} : ${st ? st.pct : 0}%"></div>`;
+    }
+  } else {
+    sparkBarsHtml = [45, 70, 55, 95, 65, 40, 80, 60].map((h, idx) => `<div class="dash-spark-col ${idx < 3 ? 'done' : ''}" style="height:${h}%"></div>`).join("");
+  }
+
+  const totalCompletedComps = completedSet.size;
+  const globalDepPct = Math.round((totalCompletedComps / 22) * 100);
+
+  const formationStartHtml = studentPreviewMode
+    ? `<span class="dash-fdate-val">${programSchedule.formationStartSlot ? programSchedule.formationStartSlot.dateTextYear : rec.formationStartDate}</span>`
+    : `<div class="dash-fdate-inputs"><input type="date" id="formationStartDateInput" value="${rec.formationStartDate}" onchange="onFormationStartChange()"></div>
+       <span class="dash-fdate-sub">${programSchedule.formationStartSlot ? programSchedule.formationStartSlot.dateTextYear : ""}</span>`;
+
+  const isCombinedC12 = (comp.id === 1 || comp.id === 2);
+  const compCodeLabel = isCombinedC12 ? "465-011 & 465-024" : comp.code;
+  const compHeadingLabel = isCombinedC12 ? "C1 & C2 — Métier et formation / Environnement informatique" : `C${comp.id} — ${comp.nom}`;
+  const compShortTag = isCombinedC12 ? "C1/C2" : `C${comp.id}`;
+  const profLabel = isCombinedC12 ? "Camila & Pascal" : `${profNames[comp.prof].split(' ')[0]} (${comp.prof})`;
+
+  let globalRhythmPillClass = "on-track", globalRhythmPillText = "Dans les temps";
+  if (daysDelta > 0) { globalRhythmPillClass = "ahead"; globalRhythmPillText = `+${formattedDaysAndHours}`; }
+  else if (daysDelta < 0) { globalRhythmPillClass = "behind"; globalRhythmPillText = `-${formattedDaysAndHours}`; }
+
+  container.innerHTML = `
+    <div class="dash-hero-card">
+      <div class="dash-hero-top">
+        <div>
+          <span class="dash-hero-kicker">Fiche individuelle de cheminement</span>
+          <h1 class="dash-hero-student">${escapeHtml(studentName)}</h1>
+        </div>
+        <span class="dash-group-pill">Groupe ${group}</span>
+      </div>
+
+      <div class="dash-formation-dates">
+        <div class="dash-fdate-box">
+          <span class="dash-fdate-label">Début formation (C1/C2)</span>
+          ${formationStartHtml}
+        </div>
+        <div class="dash-fdate-box">
+          <span class="dash-fdate-label">Fin prévue (C22)</span>
+          <span class="dash-fdate-val">${formationEndLabel}</span>
+          ${initialEndSubHtml}
+          ${varianceBadgeHtml}
+        </div>
+      </div>
+
+      <div class="dash-hero-comp-box">
+        <span class="dash-comp-badge">Compétence active • ${compCodeLabel}</span>
+        <span class="dash-comp-title">${compHeadingLabel}</span>
+      </div>
+
+      <div class="dash-hero-metrics">
+        <div class="dash-hero-metric">
+          <span>Durée prévue</span>
+          <strong>${isCombinedC12 ? "46,75 h (7 j)" : `${comp.heures} (${comp.jours} j)`}</strong>
+        </div>
+        <div class="dash-hero-metric">
+          <span>Blocs de 3,25 h</span>
+          <strong>${activeSlots.length} cours${currentCompSched && currentCompSched.passedFirstTry ? ' (1er coup)' : ''}</strong>
+        </div>
+        <div class="dash-hero-metric">
+          <span>Enseignant</span>
+          <strong>${profLabel}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-ring-card">
+      <div class="dash-card-header">
+        <span class="dash-card-title">Avancement ${compShortTag} (${metrics ? 'Journal de bord' : 'Calendrier'})</span>
+        <span class="dash-dots">•••</span>
+      </div>
+      <div class="dash-big-kpi">${metrics ? `${tasksDone}/${tasksTotal}` : `${compPct}%`}</div>
+      <div class="dash-ring-body">
+        <div class="dash-ring-legend">
+          <div class="dash-legend-item"><span class="dash-legend-label"><span class="dash-dot-done"></span>Complété</span><span class="dash-legend-val">${compPct}%</span></div>
+          <div class="dash-legend-item"><span class="dash-legend-label"><span class="dash-dot-rem"></span>Restant</span><span class="dash-legend-val">${remainingPct}%</span></div>
+        </div>
+        <div class="dash-donut-wrap">
+          <svg class="dash-donut-svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="${radius}" fill="none" stroke="var(--dash-ring-track)" stroke-width="11"/>
+            <circle cx="50" cy="50" r="${radius}" fill="none" stroke="var(--ring-rem-color)" stroke-width="11" stroke-dasharray="${circumference}" stroke-dashoffset="0"/>
+            <circle cx="50" cy="50" r="${radius}" fill="none" stroke="var(--ring-done-color)" stroke-width="11" stroke-linecap="round" stroke-dasharray="${circumference}" stroke-dashoffset="${dashOffset}"/>
+          </svg>
+          <div class="dash-donut-center"><span>${compPct}%</span><small>${compShortTag}</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-right-stack">
+      <div class="dash-mini-card">
+        <div class="dash-mini-top">
+          <div class="dash-mini-left">
+            <span class="dash-mini-number">${uniqueRemainingDays} j</span>
+            <div class="dash-mini-label-group">
+              <span class="dash-mini-title">Restants ${compShortTag} (${remainingBlocksCount} blocs)</span>
+              <span class="dash-mini-sub">Fin ${compShortTag} : <strong>${endDateStr}</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="dash-bar-track"><div class="dash-bar-fill-primary" style="width:${timeProgressPct}%"></div></div>
+      </div>
+
+      <div class="dash-mini-card">
+        <div class="dash-mini-top">
+          <div class="dash-mini-label-group">
+            <span class="dash-mini-title">Écart global (1 j = 6 h 30)</span>
+            <span class="dash-mini-sub">Aujourd'hui : ${todayLabel}</span>
+          </div>
+          <span class="status-pill-mini ${globalRhythmPillClass}">${globalRhythmPillText}</span>
+        </div>
+        <div class="dash-spark-bars">${sparkBarsHtml}</div>
+      </div>
+
+      <div class="dash-mini-card">
+        <div class="dash-mini-top">
+          <div class="dash-mini-left">
+            <span class="dash-mini-number">${totalCompletedComps}/22</span>
+            <div class="dash-mini-label-group">
+              <span class="dash-mini-title">Compétences réussies</span>
+              <span class="dash-mini-sub">Examen ${compShortTag} : ${comp.examLabel}</span>
+            </div>
+          </div>
+          <span style="font-size:12px; font-weight:800; color:var(--text-secondary);">${globalDepPct}%</span>
+        </div>
+        <div class="dash-bar-track"><div class="dash-bar-fill-secondary" style="width:${globalDepPct}%"></div></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderButtons() {
+  const container = document.getElementById("compButtons");
+  const rec = getCurrentStudentRecord();
+  const completedSet = new Set(rec.completed || []);
+  container.innerHTML = "";
+  competences.forEach((c, idx) => {
+    if (c.id === 2) return;
+    const isCombined = (c.id === 1);
+    const isActive = isCombined ? (selectedId === 1 || selectedId === 2) : (c.id === selectedId);
+    const isDone = isCombined ? (completedSet.has(1) && completedSet.has(2)) : completedSet.has(c.id);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "comp-btn" + (isCombined ? " combined-btn" : "") + (isActive ? " active" : "") + (isDone ? " done" : "");
+    btn.textContent = isCombined ? "1-2" : c.id;
+    btn.disabled = studentPreviewMode;
+    btn.title = isCombined ? "Étape 1-2/22 : C1 & C2 conjoints" : `Étape ${idx + 1}/22 : C${c.id} — ${c.nom}`;
+    btn.onclick = () => { if (studentPreviewMode) return; selectedId = c.id; editingSlotIndex = null; saveStudentData(); renderGrid(); };
+    container.appendChild(btn);
+  });
+}
+
+function renderLogbook(slots) {
+  const container = document.getElementById("logbookContainer");
+  const comp = competences.find(c => c.id === selectedId);
+  const blocks = logbooksData[selectedId];
+  const rec = getCurrentStudentRecord();
+  const isCombinedC12 = (comp.id === 1 || comp.id === 2);
+  const compKey = getEffectiveCompKey(comp.id);
+  const logbookHeaderLabel = isCombinedC12 ? "C1 & C2 (Métier et formation / Gestion d'un environnement informatique)" : `C${comp.id} (${comp.nom})`;
+
+  if (!blocks) {
+    container.innerHTML = `<div class="logbook-top" style="border:none; margin:0; padding:0;"><div class="logbook-title">📒 Journal de bord — ${logbookHeaderLabel}</div><span style="font-size:12.5px; color:var(--text-secondary);">Le journal détaillé des leçons pour C${comp.id} n'a pas encore été importé.</span></div>`;
+    return;
+  }
+
+  const metrics = computePacingMetrics(slots);
+  let totalTasks = 0, studentDoneCount = 0, totalProfRequired = 0, profDoneCount = 0;
+  blocks.forEach(b => b.lessons.forEach(l => l.tasks.forEach(t => {
+    totalTasks++;
+    if (rec.studentTasks[t.id]) studentDoneCount++;
+    if (t.type === "init" || t.type === "depot") { totalProfRequired++; if (rec.profTasks[t.id]) profDoneCount++; }
+  })));
+
+  const globalPct = totalTasks > 0 ? Math.round((studentDoneCount / totalTasks) * 100) : 0;
+  const collapsedCount = blocks.filter(b => collapsedCoursMap[`${compKey}_${b.cours}`]).length;
+  const isMasterOpen = !((logbookExpandedByComp[compKey] === false) || (collapsedCount === blocks.length));
+
+  let html = `
+    <div class="logbook-top">
+      <div class="logbook-title">📒 Journal de bord — ${logbookHeaderLabel}</div>
+      <div class="logbook-stats">
+        <span class="stat-pill stat-student">Global : ${studentDoneCount} / ${totalTasks} (${globalPct}%)</span>
+        <span class="stat-pill stat-prof">Validations Prof : ${profDoneCount} / ${totalProfRequired}</span>
+        ${(!studentPreviewMode && isMasterOpen) ? `<button type="button" class="filter-toggle ${onlyProfFilter ? 'active' : ''}" onclick="toggleOnlyProfFilter()">${onlyProfFilter ? '✓ Filtre : Validations Prof seulement' : 'Filtrer : Validations Prof'}</button>` : ''}
+        <button type="button" class="lessons-toggle-switch ${isMasterOpen ? 'is-open' : ''}" onclick="toggleAllLogbookLessons()">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span>${isMasterOpen ? 'Leçons ouvertes' : 'Leçons fermées'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  blocks.forEach(b => {
+    const slotInfo = slots[b.cours - 1];
+    const dateLabel = slotInfo ? (slotInfo.isSkippedAfterExam ? "Non requis (Examen réussi 1er coup)" : `${slotInfo.dateText} • ${slotInfo.period}`) : "";
+    const cStat = metrics ? metrics.coursStats[b.cours] : { done: 0, total: 0, pct: 0, isComplete: false, isPast: false, isToday: false };
+    const isCoursCollapsed = !!collapsedCoursMap[`${compKey}_${b.cours}`];
+
+    let cardStateClass = "", statusChipHtml = "";
+    if (slotInfo && slotInfo.isSkippedAfterExam) statusChipHtml = `<span class="cours-status-chip chip-done">Non utilisé</span>`;
+    else if (cStat.isComplete) { cardStateClass = "cours-complete"; statusChipHtml = `<span class="cours-status-chip chip-done">✓ Complété</span>`; }
+    else if (cStat.isPast) { cardStateClass = "cours-overdue"; statusChipHtml = `<span class="cours-status-chip chip-overdue">En retard</span>`; }
+    else if (cStat.isToday) statusChipHtml = `<span class="cours-status-chip chip-today">Aujourd'hui</span>`;
+
+    let blockInner = "";
+    if (!isCoursCollapsed) {
+      b.lessons.forEach(lesson => {
+        const visibleTasks = (!studentPreviewMode && onlyProfFilter) ? lesson.tasks.filter(t => t.type === "init" || t.type === "depot") : lesson.tasks;
+        if (visibleTasks.length === 0) return;
+        let tasksHtml = visibleTasks.map(t => {
+          const isStu = !!rec.studentTasks[t.id], isProf = !!rec.profTasks[t.id], needsProf = t.type === "init" || t.type === "depot";
+          let badgesHtml = "";
+          if (t.type === "auto") badgesHtml += `<span class="badge-auto">Autocorrection</span>`;
+          else if (t.type === "init") badgesHtml += `<span class="badge-init-req">Init. requise</span>`;
+          else if (t.type === "depot") badgesHtml += `<span class="badge-depot">Déposer pour correction</span>`;
+          if (needsProf) {
+            badgesHtml += studentPreviewMode
+              ? (isProf ? `<span class="prof-check-wrap validated locked">✓ Validé Prof</span>` : "")
+              : `<label class="prof-check-wrap ${isProf ? 'validated' : ''}"><input type="checkbox" ${isProf ? "checked" : ""} onchange="toggleProfTask('${t.id}')"><span>${isProf ? "✓ Validé Prof" : "Prof"}</span></label>`;
+          }
+          const leftCtrl = studentPreviewMode
+            ? `<span class="readonly-mark ${isStu ? '' : 'empty'}">${isStu ? '✓' : ''}</span>`
+            : `<input type="checkbox" class="task-checkbox-student" ${isStu ? "checked" : ""} onchange="toggleStudentTask('${t.id}')">`;
+          return `<div class="task-row ${isStu ? 'student-done' : ''}"><label class="task-left" style="cursor:${studentPreviewMode ? 'default' : 'pointer'};">${leftCtrl}<span class="task-text">${t.text}</span></label><div class="task-badges">${badgesHtml}</div></div>`;
+        }).join("");
+        blockInner += `<div class="lesson-group"><div class="lesson-title">${lesson.title}</div>${tasksHtml}</div>`;
+      });
+    }
+
+    if (isCoursCollapsed || blockInner) {
+      html += `
+        <div class="cours-block-card ${cardStateClass}">
+          ${b.part ? `<div class="part-banner">${b.part}</div>` : ''}
+          <div class="cours-block-header ${isCoursCollapsed ? 'is-collapsed' : ''}" onclick="toggleSingleCoursLessons(${b.cours})">
+            <div class="cours-header-left"><span class="cours-block-name">Cours ${b.cours}</span>${statusChipHtml}</div>
+            <div class="cours-header-right">
+              <div class="cours-progress-wrap"><div class="cours-progress-bar"><div class="cours-progress-fill ${cStat.isComplete ? 'full' : ''}" style="width:${cStat.pct}%"></div></div><span class="cours-progress-text ${cStat.isComplete ? 'full' : ''}">${cStat.done}/${cStat.total} • ${cStat.pct}%</span></div>
+              <span class="cours-block-date">${dateLabel}</span>
+              <button type="button" class="cours-mini-toggle ${!isCoursCollapsed ? 'is-open' : ''}" onclick="event.stopPropagation(); toggleSingleCoursLessons(${b.cours});"><span class="toggle-track"><span class="toggle-thumb"></span></span><span>${!isCoursCollapsed ? 'Ouvert' : 'Fermé'}</span></button>
+            </div>
+          </div>
+          ${blockInner}
+        </div>
+      `;
+    }
+  });
+  container.innerHTML = html;
+}
+
+function renderChecklist(programSchedule) {
+  const grid = document.getElementById("checklistGrid");
+  const counter = document.getElementById("progressCounter");
+  const rec = getCurrentStudentRecord();
+  const completedSet = new Set(rec.completed || []);
+  counter.textContent = `${completedSet.size} / 22 réussies`;
+  grid.innerHTML = "";
+
+  competences.forEach(c => {
+    const isChecked = completedSet.has(c.id);
+    const isCurrent = (c.id === selectedId) || ((selectedId === 1 || selectedId === 2) && (c.id === 1 || c.id === 2));
+    const compSched = programSchedule ? programSchedule.byComp[c.id] : null;
+    const rangeStr = (compSched && compSched.startSlot && compSched.endSlot)
+      ? `${compSched.startSlot.dateTextYear} (${compSched.startSlot.period}) → ${compSched.endSlot.dateTextYear} (${compSched.endSlot.period})${compSched.passedFirstTry ? ' • ✓ 1er coup' : ''}`
+      : "";
+    const label = document.createElement("label");
+    label.className = "check-item" + (isChecked ? " checked" : "") + (isCurrent ? " active-comp-row" : "") + (studentPreviewMode ? " readonly-item" : "");
+    const controlHtml = studentPreviewMode
+      ? `<span class="readonly-mark ${isChecked ? '' : 'empty'}">${isChecked ? '✓' : ''}</span>`
+      : `<input type="checkbox" ${isChecked ? "checked" : ""} onchange="toggleCompleted(${c.id})">`;
+    label.innerHTML = `${controlHtml}<span class="check-num">C${c.id}</span><div class="check-main-info"><span class="check-name" title="${c.nom}">${c.nom}</span>${rangeStr ? `<span class="check-dates-range">${rangeStr}</span>` : ''}</div><span class="check-prof">${profNames[c.prof]}</span>`;
+    grid.appendChild(label);
+  });
+}
+
+/* =========================================================
+   BABILLARD CENTRALISÉ AVEC CALCUL EN JOURS ET HEURES (1 J = 6 H 30)
+   ========================================================= */
+function addManualBulletinNote() {
+  if (studentPreviewMode) return;
+  const input = document.getElementById("newBulletinNoteInput");
+  if (!input || !input.value.trim()) return;
+  const rec = getCurrentStudentRecord();
+  const comp = competences.find(c => c.id === selectedId);
+  const compLabel = (comp.id === 1 || comp.id === 2) ? "C1-C2" : `C${comp.id}`;
+  rec.bulletinNotes.unshift({ id: "bn_" + Date.now(), dateIso: getTodayISO(), compLabel, text: input.value.trim() });
+  input.value = ""; saveDB(); renderBulletinBoard(lastProgramSchedule);
+}
+
+function deleteManualBulletinNote(noteId) {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  rec.bulletinNotes = (rec.bulletinNotes || []).filter(n => n.id !== noteId);
+  saveDB(); renderBulletinBoard(lastProgramSchedule);
+}
+
+function renderBulletinBoard(programSchedule) {
+  const container = document.getElementById("bulletinBoardContainer");
+  if (!container) return;
+  const rec = getCurrentStudentRecord();
+  const group = document.getElementById("groupSelect").value;
+  const entries = [];
+
+  if (rec.slotOverrides) {
+    competences.forEach(c => {
+      if (c.id === 2) return;
+      const compKey = getEffectiveCompKey(c.id);
+      const compLabel = (compKey === 1) ? "C1 & C2" : `C${c.id}`;
+      const overrides = rec.slotOverrides[compKey];
+      const sched = programSchedule && programSchedule.byComp[c.id];
+      if (!overrides) return;
+
+      Object.keys(overrides).forEach(slotIdxStr => {
+        const slotIdx = parseInt(slotIdxStr, 10);
+        const ov = overrides[slotIdx];
+        if (!ov) return;
+        const p = ov.startDate.split("-");
+        const dObj = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+        const dateFormatted = `${formatDateFrWithYear(dObj)} (${ov.startPeriod || "AM"})`;
+        const noteText = (ov.note && ov.note.trim()) ? ov.note.trim() : "Date ajustée manuellement (aucun motif précisé).";
+
+        const deltaDays = (sched && sched.slotDeltasMap && typeof sched.slotDeltasMap[slotIdx] === "number")
+          ? sched.slotDeltasMap[slotIdx] : 0;
+
+        let impactText = "";
+        let impactType = "neutral";
+        if (deltaDays > 0) {
+          impactText = `+${formatDaysAndHours(deltaDays)} d'avance`;
+          impactType = "gain";
+        } else if (deltaDays < 0) {
+          impactText = `-${formatDaysAndHours(Math.abs(deltaDays))} de retard`;
+          impactType = "loss";
+        }
+
+        entries.push({
+          type: "date",
+          badge: `📅 ${compLabel} — Cours ${slotIdx}`,
+          impactText, impactType,
+          dateText: dateFormatted,
+          text: noteText,
+          removableId: null
+        });
+      });
+    });
+  }
+
+  if (rec.examPassedFirstTry) {
+    competences.forEach(c => {
+      if (c.id === 2) return;
+      const compKey = getEffectiveCompKey(c.id);
+      if (rec.examPassedFirstTry[compKey]) {
+        const compLabel = (compKey === 1) ? "C1 & C2" : `C${c.id}`;
+        const sched = programSchedule && programSchedule.byComp[c.id];
+        const examSlot = (sched && sched.lastExamIdx) ? sched.slots[sched.lastExamIdx - 1] : null;
+        const skippedBlocks = sched ? sched.slots.filter(s => s.isSkippedAfterExam).length : 0;
+        const gainedDays = skippedBlocks / 2;
+
+        entries.push({
+          type: "exam",
+          badge: `🏆 ${compLabel} — Examen réussi du 1er coup`,
+          impactText: gainedDays > 0 ? `+${formatDaysAndHours(gainedDays)} d'avance` : "",
+          impactType: "gain",
+          dateText: examSlot ? `${examSlot.dateTextYear} (${examSlot.period})` : "",
+          text: `Récupération et reprise non utilisées (${skippedBlocks} bloc${skippedBlocks > 1 ? 's' : ''}) — avancement automatique des compétences suivantes.`,
+          removableId: null
+        });
+      }
+    });
+  }
+
+  if (Array.isArray(rec.bulletinNotes)) {
+    rec.bulletinNotes.forEach(bn => {
+      const p = (bn.dateIso || getTodayISO()).split("-");
+      const dObj = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+      entries.push({
+        type: "general",
+        badge: `📌 Note ${bn.compLabel || "Suivi"}`,
+        impactText: "", impactType: "neutral",
+        dateText: formatDateFrWithYear(dObj),
+        text: bn.text,
+        removableId: bn.id
+      });
+    });
+  }
+
+  /* Bilan cumulé en jours et heures (1 jour de cours = 6 h 30) */
+  const totalDaysDelta = programSchedule
+    ? computeClassDaysDelta(rec.initialEndDateIso, rec.initialEndPeriod, programSchedule.formationEndSlot, group)
+    : 0;
+  const formattedTotal = formatDaysAndHours(Math.abs(totalDaysDelta));
+
+  let summaryBadgeHtml = "";
+  if (totalDaysDelta > 0) {
+    summaryBadgeHtml = `<span class="bulletin-summary-pill ahead">⏱️ Avancement cumulé : +${formattedTotal} d'avance (1 j = 6 h 30)</span>`;
+  } else if (totalDaysDelta < 0) {
+    summaryBadgeHtml = `<span class="bulletin-summary-pill behind">⏱️ Écart cumulé : -${formattedTotal} de retard (1 j = 6 h 30)</span>`;
+  } else {
+    summaryBadgeHtml = `<span class="bulletin-summary-pill ontime">⏱️ Avancement cumulé : Dans les temps • 0 jour (0 h)</span>`;
+  }
+
+  let cardsHtml = "";
+  if (entries.length === 0) {
+    cardsHtml = `<div class="bulletin-empty">Aucune note de changement de date ou d'observation enregistrée pour cet élève. Utilisez <strong>✎</strong> sur une case horaire pour laisser une trace d'ajustement.</div>`;
+  } else {
+    cardsHtml = `<div class="bulletin-grid">` + entries.map(ent => {
+      const typeClass = ent.type === "exam" ? "type-exam" : (ent.type === "general" ? "type-general" : "");
+      const impactHtml = ent.impactText
+        ? `<span class="bulletin-impact-tag ${ent.impactType}">${escapeHtml(ent.impactText)}</span>`
+        : "";
+      return `
+        <div class="bulletin-card ${typeClass}">
+          <div class="bulletin-card-top">
+            <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+              <span class="bulletin-badge">${escapeHtml(ent.badge)}</span>
+              ${impactHtml}
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="bulletin-date-tag">${escapeHtml(ent.dateText)}</span>
+              ${(!studentPreviewMode && ent.removableId) ? `<button type="button" class="bulletin-del-btn" onclick="deleteManualBulletinNote('${ent.removableId}')" title="Supprimer cette note">×</button>` : ''}
+            </div>
+          </div>
+          <div class="bulletin-text">${escapeHtml(ent.text)}</div>
+        </div>
+      `;
+    }).join("") + `</div>`;
+  }
+
+  container.innerHTML = `
+    <div class="bulletin-header">
+      <span class="section-label" style="margin:0;">📌 Babillard des notes &amp; ajustements de parcours (${entries.length})</span>
+      ${summaryBadgeHtml}
+    </div>
+    ${!studentPreviewMode ? `
+      <div class="bulletin-add-row">
+        <input type="text" id="newBulletinNoteInput" placeholder="Ajouter une note datée au babillard..." onkeydown="if(event.key==='Enter'){event.preventDefault();addManualBulletinNote();}">
+        <button type="button" class="mini-btn" onclick="addManualBulletinNote()">+ Ajouter au babillard</button>
+      </div>
+    ` : ''}
+    ${cardsHtml}
+  `;
+}
+
+/* ÉDITION DE DATE PAR CASE */
+function startEditSlot(slotIdx) { if (studentPreviewMode) return; editingSlotIndex = slotIdx; renderGrid(); }
+function cancelEditSlot() { editingSlotIndex = null; renderGrid(); }
+
+function applyEditSlot(slotIdx) {
+  if (studentPreviewMode) return;
+  const dateInput = document.getElementById(`editDateInput_${slotIdx}`);
+  const periodInput = document.getElementById(`editPeriodInput_${slotIdx}`);
+  const noteInput = document.getElementById(`editNoteInput_${slotIdx}`);
+  if (!dateInput || !periodInput || !isValidIsoDateString(dateInput.value)) return;
+
+  const rec = getCurrentStudentRecord();
+  const compKey = getEffectiveCompKey(selectedId);
+  const noteText = noteInput ? noteInput.value.trim() : "";
+
+  if (compKey === 1 && slotIdx === 1 && periodInput.value === "AM" && !noteText) {
+    rec.formationStartDate = dateInput.value;
+    if (rec.slotOverrides[1] && rec.slotOverrides[1][1]) delete rec.slotOverrides[1][1];
+  } else {
+    if (compKey === 1 && slotIdx === 1 && periodInput.value === "AM") rec.formationStartDate = dateInput.value;
+    if (!rec.slotOverrides[compKey]) rec.slotOverrides[compKey] = {};
+    rec.slotOverrides[compKey][slotIdx] = { startDate: dateInput.value, startPeriod: periodInput.value, note: noteText };
+  }
+
+  editingSlotIndex = null; saveDB(); renderGrid();
+}
+
+function resetSingleSlotOverride(slotIdx) {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  const compKey = getEffectiveCompKey(selectedId);
+  if (rec.slotOverrides[compKey] && rec.slotOverrides[compKey][slotIdx]) {
+    delete rec.slotOverrides[compKey][slotIdx];
+    if (Object.keys(rec.slotOverrides[compKey]).length === 0) delete rec.slotOverrides[compKey];
+    editingSlotIndex = null; saveDB(); renderGrid();
+  }
+}
+
+function resetCurrentCompCustomDates() {
+  if (studentPreviewMode) return;
+  const rec = getCurrentStudentRecord();
+  const compKey = getEffectiveCompKey(selectedId);
+  if (rec.slotOverrides && rec.slotOverrides[compKey]) {
+    delete rec.slotOverrides[compKey];
+    editingSlotIndex = null; saveDB(); renderGrid();
+  }
+}
+
+let lastGeneratedSlots = [];
+let lastProgramSchedule = null;
+
+function renderGrid() {
+  const comp = competences.find(c => c.id === selectedId);
+  const group = document.getElementById("groupSelect").value;
+  const rec = getCurrentStudentRecord();
+  const now = new Date();
+  const todayIso = formatDateISO(now);
+
+  const programSchedule = computeFullProgramSchedule(rec, group);
+  lastProgramSchedule = programSchedule;
+  const currentCompSched = programSchedule.byComp[selectedId];
+  const generatedSlots = currentCompSched ? currentCompSched.slots : [];
+  lastGeneratedSlots = generatedSlots;
+
+  const resetBtn = document.getElementById("resetCompDatesBtn");
+  if (resetBtn) resetBtn.style.display = (!studentPreviewMode && currentCompSched && currentCompSched.hasAnyCustomSlot) ? "inline-block" : "none";
+
+  renderButtons();
+  renderChecklist(programSchedule);
+
+  const warningEl = document.getElementById("dateWarning");
+  const compKey = getEffectiveCompKey(selectedId);
+  const compOverrides = (rec.slotOverrides && rec.slotOverrides[compKey]) || {};
+  const passedFirstTry = !!(rec.examPassedFirstTry && rec.examPassedFirstTry[compKey]);
+  const lastExamIdx = getLastExamSlotIndex(comp);
+  let hasAdjustedNonClassWarning = false;
+
+  if (!studentPreviewMode) {
+    Object.keys(compOverrides).forEach(k => {
+      const ov = compOverrides[k];
+      if (ov && isValidIsoDateString(ov.startDate)) {
+        const p = ov.startDate.split("-");
+        const dTest = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+        if (!isValidSlot(dTest, ov.startPeriod || "AM", group)) hasAdjustedNonClassWarning = true;
+      }
+    });
+  }
+
+  if (hasAdjustedNonClassWarning) {
+    warningEl.style.display = "block";
+    warningEl.textContent = "⚠️ Une date ajustée tombe un jour sans cours : la case et la suite ont été décalées au prochain bloc valide.";
+  } else {
+    warningEl.style.display = "none";
+  }
+
+  renderDashboardHeader(generatedSlots, programSchedule);
+
+  const grid = document.getElementById("scheduleGrid");
+  grid.innerHTML = "";
+  const totalBlocs = comp.blocs;
+  const eb = comp.examBlocks;
+  const isCombinedC12 = (selectedId === 1 || selectedId === 2);
+
+  for (let i = 1; i <= totalBlocs; i++) {
+    const slot = generatedSlots[i - 1];
+    const isSkippedAfterExam = slot && slot.isSkippedAfterExam;
+    const isPastBox = !isSkippedAfterExam && slot && now > slot.slotEnd;
+    const isTodayBox = !isSkippedAfterExam && !isPastBox && slot && slot.iso === todayIso;
+    const isCustomAnchor = slot && slot.isCustomAnchor;
+    const isEditingThis = !studentPreviewMode && !isSkippedAfterExam && (editingSlotIndex === i);
+    const ov = compOverrides[i];
+
+    const box = document.createElement("div");
+    box.className = "cours-box"
+      + (isSkippedAfterExam ? " skipped-box" : "")
+      + (isPastBox ? " past-box" : "")
+      + (i === 1 ? " first-box" : "")
+      + (isTodayBox ? " today-box" : "")
+      + (isCustomAnchor ? " custom-anchor-box" : "");
+
+    let headerButtonsHtml = "";
+    if (!studentPreviewMode && !isEditingThis && !isSkippedAfterExam) {
+      headerButtonsHtml = `<div class="slot-actions">
+        ${isCustomAnchor ? `<button type="button" class="slot-edit-btn reset" onclick="resetSingleSlotOverride(${i})" title="Réinitialiser cette case au flux normal">↺</button>` : ''}
+        <button type="button" class="slot-edit-btn" onclick="startEditSlot(${i})" title="Modifier la date de ce cours">✎</button>
+      </div>`;
+    }
+
+    let contentHtml = `<div class="cours-box-header"><span class="cours-title">Cours ${i}</span>${headerButtonsHtml}</div>`;
+
+    if (isEditingThis) {
+      const defaultDate = (ov && ov.startDate) ? ov.startDate : (slot ? slot.iso : rec.formationStartDate);
+      const defaultPeriod = (ov && ov.startPeriod) ? ov.startPeriod : (slot ? slot.period : "AM");
+      const defaultNote = (ov && ov.note) ? ov.note : "";
+      contentHtml += `
+        <div class="inline-edit-panel">
+          <input type="date" id="editDateInput_${i}" value="${defaultDate}">
+          <select id="editPeriodInput_${i}">
+            <option value="AM" ${defaultPeriod === "AM" ? "selected" : ""}>AM</option>
+            <option value="PM" ${defaultPeriod === "PM" ? "selected" : ""}>PM</option>
+          </select>
+          <input type="text" id="editNoteInput_${i}" value="${escapeHtml(defaultNote)}" placeholder="Motif (ex. Avance, arrêt...)" onkeydown="if(event.key==='Enter'){event.preventDefault();applyEditSlot(${i});}">
+          <div class="inline-edit-btns">
+            <button type="button" class="btn-ok" onclick="applyEditSlot(${i})">OK</button>
+            <button type="button" class="btn-cancel" onclick="cancelEditSlot()">✕</button>
+          </div>
+        </div>
+      `;
+    } else if (slot) {
+      contentHtml += `<div class="cours-date-block"><span class="cours-date-main">${slot.dateText}</span><span class="cours-period-sub">${isSkippedAfterExam ? "Non utilisé" : slot.period}</span></div>`;
+    } else {
+      contentHtml += `<div></div>`;
+    }
+
+    let tagsHtml = '<div class="tags-stack">';
+    if (isCustomAnchor && !isEditingThis) {
+      const shortNote = (ov && ov.note) ? `📝 ${escapeHtml(ov.note)}` : "Date ajustée";
+      tagsHtml += `<div class="eval-tag eval-custom" title="${ov && ov.note ? escapeHtml(ov.note) : 'Date ajustée'}">${shortNote}</div>`;
+    }
+
+    if (isCombinedC12) {
+      if (i === 11) tagsHtml += `<div class="eval-tag eval-cmd">Commander C07</div>`;
+      else if (i === 12) tagsHtml += `<div class="eval-tag eval-pretest">Prétest C02</div>`;
+      else if (i === 13) tagsHtml += `<div class="eval-tag eval-examen">Examen C01 &amp; C02</div>`;
+      else if (i === 14) tagsHtml += isSkippedAfterExam ? `<div class="eval-tag eval-skipped">Non requis (1er coup)</div>` : `<div class="eval-tag eval-recup">Récup. / Reprise</div>`;
+    } else if (selectedId === 7) {
+      if (i === 7) tagsHtml += `<div class="eval-tag eval-pretest">Prétest</div>`;
+      else if (i === 8) tagsHtml += `<div class="eval-tag eval-examen">Examen</div>`;
+      else if (i === 9) tagsHtml += isSkippedAfterExam ? `<div class="eval-tag eval-skipped">Non requis (1er coup)</div>` : `<div class="eval-tag eval-recup">Récup. / Reprise</div>`;
+    } else if (eb === 2) {
+      if (i === totalBlocs - 5) tagsHtml += `<div class="eval-tag eval-pretest">Prétest (1/2)</div>`;
+      else if (i === totalBlocs - 4) tagsHtml += `<div class="eval-tag eval-pretest">Prétest (2/2)</div>`;
+      else if (i === totalBlocs - 3) tagsHtml += `<div class="eval-tag eval-examen">Examen (1/2)</div>`;
+      else if (i === totalBlocs - 2) tagsHtml += `<div class="eval-tag eval-examen">Examen (2/2)</div>`;
+      else if (i === totalBlocs - 1) tagsHtml += isSkippedAfterExam ? `<div class="eval-tag eval-skipped">Non requis (1er coup)</div>` : `<div class="eval-tag eval-recup">Récupération</div>`;
+      else if (i === totalBlocs) tagsHtml += isSkippedAfterExam ? `<div class="eval-tag eval-skipped">Non requis (1er coup)</div>` : `<div class="eval-tag eval-reprise">Reprise</div>`;
+    } else if (eb === 1) {
+      if (i === totalBlocs - 3) tagsHtml += `<div class="eval-tag eval-pretest">Prétest</div>`;
+      else if (i === totalBlocs - 2) tagsHtml += `<div class="eval-tag eval-examen">Examen</div>`;
+      else if (i === totalBlocs - 1) tagsHtml += isSkippedAfterExam ? `<div class="eval-tag eval-skipped">Non requis (1er coup)</div>` : `<div class="eval-tag eval-recup">Récupération</div>`;
+      else if (i === totalBlocs) tagsHtml += isSkippedAfterExam ? `<div class="eval-tag eval-skipped">Non requis (1er coup)</div>` : `<div class="eval-tag eval-reprise">Reprise</div>`;
+    }
+
+    if (lastExamIdx !== null && i === lastExamIdx && !isEditingThis) {
+      if (studentPreviewMode) {
+        if (passedFirstTry) tagsHtml += `<div class="exam-pass-badge-readonly">✓ Réussi (1er coup)</div>`;
+      } else {
+        tagsHtml += `<button type="button" class="exam-pass-btn ${passedFirstTry ? 'passed' : ''}" onclick="toggleExamFirstTry(${comp.id})">${passedFirstTry ? '✓ Réussi (1er coup)' : '+ Succès 1er coup'}</button>`;
+      }
+    }
+
+    if (!isCombinedC12 && i === totalBlocs && milestones[i] && !isSkippedAfterExam) tagsHtml += `<div class="milestone">${milestones[i]}</div>`;
+    tagsHtml += '</div>';
+
+    contentHtml += tagsHtml;
+    box.innerHTML = contentHtml;
+    grid.appendChild(box);
+  }
+
+  renderLogbook(generatedSlots);
+  renderBulletinBoard(programSchedule);
+}
+
+function toggleStudentMode() {
+  studentPreviewMode = !studentPreviewMode;
+  editingSlotIndex = null;
+  document.getElementById("modeBtn").textContent = studentPreviewMode ? "✏️ Retour Mode Enseignant" : "👁️ Aperçu Mode Élève";
+  document.getElementById("previewBannerAlert").classList.toggle("visible", studentPreviewMode);
+  document.getElementById("notesField").readOnly = studentPreviewMode;
+  document.getElementById("studentSelect").disabled = studentPreviewMode;
+  document.getElementById("groupSelect").disabled = studentPreviewMode;
+  document.querySelectorAll(".teacher-only").forEach(el => { el.style.display = studentPreviewMode ? "none" : ""; });
+  renderGrid();
+}
+
+function exportStudentInterface() {
+  const studentName = document.getElementById("studentSelect").value;
+  const rec = JSON.parse(JSON.stringify(getCurrentStudentRecord()));
+  const currentTheme = document.body.classList.contains("theme-light") ? "light" : "dark";
+  const currentPalette = document.body.classList.contains("palette-green-purple") ? "green-purple" : "rose-orange";
+  const stylesCss = document.getElementById("mainStyles").innerHTML;
+
+  const payload = {
+    studentName, record: rec, competences, profNames, logbooksData,
+    nonClassDays: Array.from(nonClassDays), milestones, joursSemaine, moisCourts,
+    initialTheme: currentTheme, initialPalette: currentPalette
+  };
+  const safeJson = JSON.stringify(payload).replace(/<\/script>/gi, "<\\/script>");
+  const bodyClasses = [currentTheme === "light" ? "theme-light" : "", currentPalette === "green-purple" ? "palette-green-purple" : ""].filter(Boolean).join(" ");
+
+  const exportedHtml = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Suivi de compétences — ${studentName.replace(/</g, "&lt;")}</title>
+<style>${stylesCss}</style>
+</head>
+<body class="${bodyClasses}">
+<div class="app-container">
+  <div class="top-bar">
+    <div class="brand">
+      <div class="brand-text-group">
+        <span class="brand-title">Suivi de compétences</span>
+        <span class="badge-pro">Dép. en infographie</span>
+      </div>
+    </div>
+    <div class="controls-row">
+      <button type="button" class="icon-nav-btn" onclick="openModal('settingsModal')">⚙️ Apparence</button>
+    </div>
+  </div>
+  <div class="content-body">
+    <div class="dashboard-header-grid" id="dashboardHeader"></div>
+    <div id="formationGlobalBanner"></div>
+    <span class="section-label">Grille horaire (Blocs de 3,25 h / Jour de cours = 6 h 30)</span>
+    <div class="schedule-grid" id="scheduleGrid"></div>
+    <div class="logbook-section" id="logbookContainer"></div>
+    <div class="checklist-section">
+      <div class="checklist-header">
+        <span class="section-label" style="margin:0;">Guide de suivi — Compétences réussies &amp; calendrier prévu (C1 → C22)</span>
+        <span class="progress-counter" id="progressCounter">0 / 22 réussies</span>
+      </div>
+      <div class="checklist-grid" id="checklistGrid"></div>
+    </div>
+    <div class="notes-section" id="notesSectionWrap">
+      <span class="section-label">Notes &amp; Suivi de l'enseignant</span>
+      <textarea id="notesField" readonly></textarea>
+    </div>
+    <div class="bulletin-board-section" id="bulletinBoardContainer"></div>
+    <div class="toolbar">
+      <button type="button" class="action primary" onclick="window.print()">🖨️ Imprimer / Sauvegarder PDF</button>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="settingsModal" onclick="if(event.target.id==='settingsModal') closeModal('settingsModal')">
+  <div class="modal-box">
+    <div class="modal-header"><h3 class="modal-title">⚙️ Apparence de l'interface</h3><button type="button" class="modal-close" onclick="closeModal('settingsModal')">×</button></div>
+    <div class="theme-options" style="margin-bottom:18px;">
+      <button type="button" class="theme-card" id="themeCardDark" onclick="setTheme('dark')"><span class="theme-card-title">🌙 Mode Foncé</span></button>
+      <button type="button" class="theme-card" id="themeCardLight" onclick="setTheme('light')"><span class="theme-card-title">☀️ Mode Clair</span></button>
+    </div>
+    <div class="theme-options">
+      <button type="button" class="theme-card" id="paletteCardRoseOrange" onclick="setPalette('rose-orange')"><span class="theme-card-title">Rose &amp; Orange</span></button>
+      <button type="button" class="theme-card" id="paletteCardGreenPurple" onclick="setPalette('green-purple')"><span class="theme-card-title">Vert &amp; Mauve</span></button>
+    </div>
+  </div>
+</div>
+<script>
+const APP_DATA = ${safeJson};
+const HOURS_PER_DAY = 6.5;
+const nonClassDays = new Set(APP_DATA.nonClassDays);
+const STORAGE_KEY_STUDENT = "planif_eleve_" + APP_DATA.studentName.replace(/\\s+/g, "_");
+let studentTasks = Object.assign({}, APP_DATA.record.studentTasks || {});
+try { const s = localStorage.getItem(STORAGE_KEY_STUDENT); if (s) { const p = JSON.parse(s); if (p && p.studentTasks) studentTasks = Object.assign({}, studentTasks, p.studentTasks); } } catch (e) {}
+function saveStudentLocal() { try { localStorage.setItem(STORAGE_KEY_STUDENT, JSON.stringify({ studentTasks })); } catch (e) {} }
+function escapeHtml(str) { return !str ? "" : String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function formatHoursFrench(absHours) { const mTot = Math.round(absHours * 60), h = Math.floor(mTot / 60), m = mTot % 60; return (h===0&&m===0)?"0 h":(m===0?h+" h":h+" h "+String(m).padStart(2,'0')); }
+function formatFrenchDaysCount(absDays) { const f = Number.isInteger(absDays) ? String(absDays) : absDays.toFixed(1).replace(".", ","); return absDays > 1 ? f + " jours" : f + " jour"; }
+function formatDaysAndHours(absDays) { return formatFrenchDaysCount(absDays) + " (" + formatHoursFrench(absDays * HOURS_PER_DAY) + ")"; }
+function setTheme(t) { document.body.classList.toggle("theme-light", t === "light"); }
+function setPalette(p) { document.body.classList.toggle("palette-green-purple", p === "green-purple"); }
+function openModal(id) { document.getElementById(id).classList.add("open"); }
+function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+function formatDateISO(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, '0') + "-" + String(d.getDate()).padStart(2, '0'); }
+function formatDateFr(d) { return APP_DATA.joursSemaine[d.getDay()] + " " + d.getDate() + " " + APP_DATA.moisCourts[d.getMonth()]; }
+function formatDateFrWithYear(d) { return APP_DATA.joursSemaine[d.getDay()] + " " + d.getDate() + " " + APP_DATA.moisCourts[d.getMonth()] + " " + d.getFullYear(); }
+function isValidSlot(dateObj, period, group) {
+  const dow = dateObj.getDay();
+  if (dow === 0 || dow === 6) return false;
+  if (nonClassDays.has(formatDateISO(dateObj))) return false;
+  if (dow === 5) { if (group === "H01") return false; if (group === "J01" && period === "PM") return false; }
+  return true;
+}
+function advanceOneSlotPointer(dateObj, period) {
+  const nd = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+  if (period === "AM") return { dateObj: nd, period: "PM" };
+  nd.setDate(nd.getDate() + 1); return { dateObj: nd, period: "AM" };
+}
+function generateSlots(startIso, initialPeriod, group, count) {
+  const slots = []; if (!startIso) return slots;
+  const parts = startIso.split('-');
+  let curr = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+  let period = initialPeriod || "AM", safety = 0;
+  while (slots.length < count && safety < 5000) {
+    if (isValidSlot(curr, period, group)) {
+      const endHour = period === "AM" ? 12 : 17;
+      slots.push({ iso: formatDateISO(curr), dateObj: new Date(curr.getFullYear(), curr.getMonth(), curr.getDate()), dateText: formatDateFr(curr), dateTextYear: formatDateFrWithYear(curr), period, slotEnd: new Date(curr.getFullYear(), curr.getMonth(), curr.getDate(), endHour, 0, 0) });
+    }
+    const nxt = advanceOneSlotPointer(curr, period); curr = nxt.dateObj; period = nxt.period; safety++;
+  }
+  return slots;
+}
+function getLastExamSlotIndex(comp) {
+  if (!comp) return null; if (comp.id === 1 || comp.id === 2) return 13; if (comp.id === 7) return 8;
+  if (comp.examBlocks === 2 || comp.examBlocks === 1) return comp.blocs - 2; return null;
+}
+function computeClassDaysDelta(initialEndIso, initialEndPeriod, currentEndSlot, group) {
+  if (!initialEndIso || !currentEndSlot) return 0;
+  const initPer = initialEndPeriod || "PM", currIso = currentEndSlot.iso, currPer = currentEndSlot.period;
+  if (initialEndIso === currIso && initPer === currPer) return 0;
+  const pInit = initialEndIso.split("-");
+  const initDate = new Date(parseInt(pInit[0], 10), parseInt(pInit[1], 10) - 1, parseInt(pInit[2], 10));
+  const currDate = currentEndSlot.dateObj;
+  const initIsBeforeCurr = (initDate < currDate) || (initialEndIso === currIso && initPer === "AM" && currPer === "PM");
+  let startD, startP, endIso, endP, sign;
+  if (initIsBeforeCurr) { const nxt = advanceOneSlotPointer(initDate, initPer); startD = nxt.dateObj; startP = nxt.period; endIso = currIso; endP = currPer; sign = -1; }
+  else { const nxt = advanceOneSlotPointer(currDate, currPer); startD = nxt.dateObj; startP = nxt.period; endIso = initialEndIso; endP = initPer; sign = 1; }
+  let blocksDiff = 0, c = startD, p = startP, safety = 0;
+  while (safety < 5000) {
+    const cIso = formatDateISO(c); if (isValidSlot(c, p, group)) blocksDiff++;
+    if (cIso === endIso && p === endP) break;
+    const nxt = advanceOneSlotPointer(c, p); c = nxt.dateObj; p = nxt.period; safety++;
+  }
+  return sign * (Math.round((blocksDiff / 2) * 2) / 2);
+}
+function computeFullProgramSchedule(rec, group) {
+  const scheduleByComp = {};
+  let cursorIso = rec.formationStartDate, cursorPeriod = "AM";
+  APP_DATA.competences.forEach((comp, idx) => {
+    if (comp.id === 2 && scheduleByComp[1]) { scheduleByComp[2] = scheduleByComp[1]; return; }
+    const compKey = (comp.id === 1 || comp.id === 2) ? 1 : comp.id;
+    const compSlotOverrides = (rec.slotOverrides && rec.slotOverrides[compKey]) || {};
+    const passedFirstTry = !!(rec.examPassedFirstTry && rec.examPassedFirstTry[compKey]);
+    const lastExamIdx = getLastExamSlotIndex(comp);
+    const slots = [], customSlotsMap = {}, slotDeltasMap = {};
+    let postExamNextCursor = null;
+    for (let sIdx = 1; sIdx <= comp.blocs; sIdx++) {
+      const isSkippedAfterExam = passedFirstTry && lastExamIdx !== null && sIdx > lastExamIdx;
+      const naturalPreview = generateSlots(cursorIso, cursorPeriod, group, 1)[0] || null;
+      if (!isSkippedAfterExam && compSlotOverrides[sIdx] && compSlotOverrides[sIdx].startDate) {
+        cursorIso = compSlotOverrides[sIdx].startDate; cursorPeriod = compSlotOverrides[sIdx].startPeriod || "AM"; customSlotsMap[sIdx] = true;
+      }
+      const slot = generateSlots(cursorIso, cursorPeriod, group, 1)[0] || null;
+      if (slot) {
+        slot.isCustomAnchor = !isSkippedAfterExam && !!customSlotsMap[sIdx];
+        slot.isSkippedAfterExam = isSkippedAfterExam;
+        if (slot.isCustomAnchor && naturalPreview) slotDeltasMap[sIdx] = computeClassDaysDelta(naturalPreview.iso, naturalPreview.period, slot, group);
+        slots.push(slot);
+        const nxt = advanceOneSlotPointer(slot.dateObj, slot.period); cursorIso = formatDateISO(nxt.dateObj); cursorPeriod = nxt.period;
+        if (passedFirstTry && sIdx === lastExamIdx) postExamNextCursor = { iso: cursorIso, period: cursorPeriod };
+      }
+    }
+    if (passedFirstTry && postExamNextCursor) { cursorIso = postExamNextCursor.iso; cursorPeriod = postExamNextCursor.period; }
+    const effectiveEndSlot = (passedFirstTry && lastExamIdx && slots[lastExamIdx - 1]) ? slots[lastExamIdx - 1] : (slots[slots.length - 1] || null);
+    scheduleByComp[comp.id] = { compId: comp.id, orderIndex: idx + 1, slots, startSlot: slots[0] || null, endSlot: effectiveEndSlot, effectiveEndSlot, passedFirstTry, lastExamIdx, customSlotsMap, slotDeltasMap };
+  });
+  return { byComp: scheduleByComp, formationStartSlot: scheduleByComp[APP_DATA.competences[0].id].startSlot, formationEndSlot: scheduleByComp[APP_DATA.competences[APP_DATA.competences.length - 1].id].effectiveEndSlot };
+}
+function renderAll() {
+  const rec = APP_DATA.record, group = rec.group || "J01", comp = APP_DATA.competences.find(c => c.id === (rec.activeCompId || 1)) || APP_DATA.competences[0];
+  const programSchedule = computeFullProgramSchedule(rec, group);
+  const currentCompSched = programSchedule.byComp[comp.id];
+  const slots = currentCompSched ? currentCompSched.slots : [];
+  const daysDelta = computeClassDaysDelta(rec.initialEndDateIso, rec.initialEndPeriod, programSchedule.formationEndSlot, group);
+  const formattedDaysAndHours = formatDaysAndHours(Math.abs(daysDelta));
+  const formationEndLabel = programSchedule.formationEndSlot ? programSchedule.formationEndSlot.dateTextYear + " • " + programSchedule.formationEndSlot.period : "—";
+  let initialEndStr = "—";
+  if (rec.initialEndDateIso) {
+    const p = rec.initialEndDateIso.split("-");
+    initialEndStr = formatDateFrWithYear(new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10))) + " • " + (rec.initialEndPeriod || "PM");
+  }
+  let bCls = "ontime", bIcon = "⏱️", bText = "Dans les temps — 0 jour (0 h) d'écart sur l'ensemble de la formation";
+  if (daysDelta > 0) { bCls = "ahead"; bIcon = "🚀"; bText = "Avance globale de +" + formattedDaysAndHours + " dans l'ensemble de la formation"; }
+  else if (daysDelta < 0) { bCls = "behind"; bIcon = "⚠️"; bText = "Retard global de " + formattedDaysAndHours + " dans l'ensemble de la formation"; }
+
+  document.getElementById("dashboardHeader").innerHTML =
+    '<div class="dash-hero-card"><div class="dash-hero-top"><div><span class="dash-hero-kicker">Espace Élève</span><h1 class="dash-hero-student">' + escapeHtml(APP_DATA.studentName) + '</h1></div><span class="dash-group-pill">Groupe ' + group + '</span></div><div class="dash-formation-dates"><div class="dash-fdate-box"><span class="dash-fdate-label">Début formation</span><span class="dash-fdate-val">' + (programSchedule.formationStartSlot ? programSchedule.formationStartSlot.dateTextYear : "") + '</span></div><div class="dash-fdate-box"><span class="dash-fdate-label">Fin prévue (C22)</span><span class="dash-fdate-val">' + formationEndLabel + '</span></div></div><div class="dash-hero-comp-box"><span class="dash-comp-badge">Compétence active</span><span class="dash-comp-title">C' + comp.id + ' — ' + comp.nom + '</span></div></div>';
+
+  document.getElementById("formationGlobalBanner").innerHTML =
+    '<div class="formation-global-banner ' + bCls + '"><div class="fgb-left"><div class="fgb-icon">' + bIcon + '</div><div><span class="fgb-title">Situation globale de la formation (C1 → C22 • 1 jour de cours = 6 h 30)</span><span class="fgb-main">' + bText + '</span></div></div><div class="fgb-right"><div class="fgb-stat-box"><span>Fin initiale prévue</span><strong>' + initialEndStr + '</strong></div><div class="fgb-stat-box"><span>Fin projetée actuelle</span><strong>' + formationEndLabel + '</strong></div></div></div>';
+
+  const grid = document.getElementById("scheduleGrid"); grid.innerHTML = "";
+  slots.forEach((slot, idx) => {
+    const box = document.createElement("div"); box.className = "cours-box" + (slot.isSkippedAfterExam ? " skipped-box" : "");
+    box.innerHTML = '<div class="cours-box-header"><span class="cours-title">Cours ' + (idx + 1) + '</span></div><div class="cours-date-block"><span class="cours-date-main">' + slot.dateText + '</span><span class="cours-period-sub">' + (slot.isSkippedAfterExam ? "Non utilisé" : slot.period) + '</span></div>';
+    grid.appendChild(box);
+  });
+
+  const bulletinWrap = document.getElementById("bulletinBoardContainer");
+  let summaryHtml = daysDelta > 0
+    ? '<span class="bulletin-summary-pill ahead">⏱️ Avancement cumulé : +' + formattedDaysAndHours + ' d\'avance (1 j = 6 h 30)</span>'
+    : (daysDelta < 0 ? '<span class="bulletin-summary-pill behind">⏱️ Écart cumulé : -' + formattedDaysAndHours + ' de retard (1 j = 6 h 30)</span>' : '<span class="bulletin-summary-pill ontime">⏱️ Avancement cumulé : Dans les temps • 0 jour (0 h)</span>');
+  bulletinWrap.innerHTML = '<div class="bulletin-header"><span class="section-label" style="margin:0;">📌 Babillard des notes &amp; ajustements de parcours</span>' + summaryHtml + '</div>';
+}
+setTheme(APP_DATA.initialTheme || "dark"); setPalette(APP_DATA.initialPalette || "rose-orange"); renderAll();
+<\/script>
+</body>
+</html>`;
+
+  const blob = new Blob([exportedHtml], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeFilename = studentName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9_-]+/g, "_");
+  a.href = url;
+  a.download = `Suivi_${safeFilename}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+initAppearance();
+loadDB();
+renderStudentDropdown(db.students[0]);
+onStudentChange();
+</script>
+</body>
+</html>
